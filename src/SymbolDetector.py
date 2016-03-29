@@ -7,4 +7,9 @@ import cv2
 
 class SymbolDetector:
     def __init__(self, option):
-        print "detector"
+        print "test"
+        try:
+            im = cv2.imread("123.png")
+            cv2.imshow(im)
+        except Exception:
+            print Exception

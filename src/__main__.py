@@ -1,7 +1,6 @@
+from pdfReader import PdfReader
 
 
-from pdfReader import pdfReader
-
-if __name__ == "__main__":
-    pr = pdfReader("/Users/Hipapa/Projects/Git/Vintager/data/train.pdf")
+if "__main__" == __name__:
+    pr = PdfReader("/Users/Hipapa/Projects/Git/Vintager/data/train.pdf")
     pr.read()

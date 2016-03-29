@@ -3,6 +3,7 @@
 # 1, HOG + muticlass-SVM
 # 2, AutoEncoder
 
-class symbolDetector:
+
+class SymbolDetector:
     def __init__(self, option):
         print "detector"

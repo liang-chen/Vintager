@@ -2,17 +2,19 @@
 # convert pdf to pixel image
 # dependent on the installation of ImageMagick and wand binding in Python
 
-#from wand.image import Image
-#from wand.display import display
+# from wand.image import Image
+# from wand.display import display
 import sys
 
-class pdfReader:
+
+class PdfReader:
     def __init__(self, path):
         self.path = path
         self.image = None
 
     def read(self):
-        #with Image(filename = self.path, resolution=180) as img:
+
+        # with Image(filename = self.path, resolution=180) as img:
         #    self.image = img
         #    print "image width = ", img.width
         #    print "image height = ", img.height
@@ -43,7 +45,7 @@ class pdfReader:
 
             istart += startfix
             iend += endfix
-            #print "JPG %d from %d to %d" % (njpg, istart, iend)
+            # print "JPG %d from %d to %d" % (njpg, istart, iend)
             jpg = pdf[istart:iend]
             jpgfile = file(self.path[:-4]+"%d.jpg" % njpg, "wb")
             jpgfile.write(jpg)

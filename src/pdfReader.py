@@ -10,7 +10,7 @@ import sys
 class PdfReader:
     def __init__(self, path):
         self.path = path
-        self.image = None
+        # self.image = None
 
     def read(self):
 
@@ -42,12 +42,12 @@ class PdfReader:
             iend = pdf.find(endmark, iend - 20)
             if iend < 0:
                 raise Exception("Didn't find end of JPG!")
-
             istart += startfix
             iend += endfix
             # print "JPG %d from %d to %d" % (njpg, istart, iend)
             jpg = pdf[istart:iend]
             jpgfile = file(self.path[:-4]+"%d.jpg" % njpg, "wb")
+
             jpgfile.write(jpg)
             jpgfile.close()
 

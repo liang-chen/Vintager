@@ -9,7 +9,8 @@ class SymbolDetector:
     def __init__(self, option):
         print "test"
         try:
-            im = cv2.imread("123.png")
-            cv2.imshow(im)
+            im = cv2.imread("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg")
+            cv2.imshow('image', im)
+            cv2.waitKey(0)
         except Exception:
             print Exception

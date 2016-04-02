@@ -1,3 +1,6 @@
+
+# main function, a quick testing
+
 from pdfReader import PdfReader
 from symbolDetector import SymbolDetector
 

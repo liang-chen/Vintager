@@ -3,6 +3,7 @@
 
 from pdfReader import PdfReader
 from symbolDetector import SymbolDetector
+from train import training
 
 if "__main__" == __name__:
     pr = PdfReader("/Users/Hipapa/Projects/Git/Vintager/data/train.pdf")
@@ -11,4 +12,5 @@ if "__main__" == __name__:
     except Exception:
         print Exception
 
-    sd = SymbolDetector(None)
+    training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", None, "hog")
+    #    sd = SymbolDetector(None)

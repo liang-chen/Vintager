@@ -12,5 +12,5 @@ if "__main__" == __name__:
     except Exception:
         print Exception
 
-    training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", None, "hog")
+    training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", "/Users/Hipapa/Projects/Git/Vintager/annotations/train.ant", "hog")
     #    sd = SymbolDetector(None)

@@ -33,9 +33,12 @@ class Symbol:
 
     def set_bbox(self, center, rows, cols):
         loc = LOC(center.x - cols*0.5, center.y - rows*0.5)
-        self.__bbox__.loc = loc
-        self.__bbox__.rows = rows
-        self.__bbox__.cols = cols
+        if self.__bbox__ == None:
+            self.__bbox__ = BBox(loc, rows, cols)
+        else:
+            self.__bbox__.loc = loc
+            self.__bbox__.rows = rows
+            self.__bbox__.cols = cols
 
     def set_label(self, label):
         self.__label__ = label

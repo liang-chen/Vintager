@@ -22,8 +22,9 @@ def hog(img):
 
 def read_annotations(annotation_file_path):
     annotations = {}
+
     try:
-        with open(annotation_file_path) as f:
+        with open(annotation_file_path, "r") as f:
             lines = f.readlines()
             for line in lines:
                 parsed = [x.strip() for x in line.split()]
@@ -35,7 +36,7 @@ def read_annotations(annotation_file_path):
                 else:
                     annotations[label].append(loc)
     except Exception:
-        print "nothing"
+        print Exception
 
     return annotations
 
@@ -43,7 +44,9 @@ def get_symbol(label, loc):
     if label not in symbol_label_parms:
         return None
     s = Symbol(label, None)
-    s.set_bbox(loc, symbol_label_parms[label])
+
+    [rows, cols] = symbol_label_parms[label]
+    s.set_bbox(loc, rows, cols)
     return s
 
 def get_sub_im(im, s):
@@ -56,14 +59,18 @@ def prepare_data_from_annotation(im, annotations, label):
 
     try:
         positions = annotations[label]
-        symbols = [get_symbol(im, label, loc) for loc in positions]
+        symbols = [get_symbol(label, loc) for loc in positions]
+        print symbols
         pos_data = [get_sub_im(im, s) for s in symbols if s is not None]
+
+        cv2.imshow("image", pos_data[0])
+        cv2.waitKey(0)
 
         for key in annotations.keys():
             if key is not label:
                 positions = annotations[key]
                 symbols = [get_symbol(im, label, loc) for loc in positions]
-                neg_data.append[get_sub_im(im, s) for s in symbols if s is not None]
+                neg_data.append([get_sub_im(im, s) for s in symbols if s is not None])
     except Exception:
         print "nothing"
 
@@ -76,9 +83,13 @@ def training(img_file_path, annotation_file_path, detector_name):
     img_data = pos_data + neg_data
 
     if detector_name == "hog":
+        svm_params = dict(kernel_type=cv2.ml.SVM_LINEAR,
+        svm_type = cv2.ml.SVM_C_SVC,
+        C = 2.67, gamma = 5.383 )
+
         hog_data = [map(hog, row) for row in img_data]
         train_data = np.float32(hog_data).reshape(-1, 64)
         responses = np.concatenate((np.ones(len(pos_data)), np.zeros(len(neg_data))))
-        svm = cv2.SVM()
-        svm.train(trainData, responses, params=svm_params)
+        svm = cv2.ml.SVM_create()
+        #svm.train(train_data, responses, params=svm_params)
         #svm.save('svm_data.dat')

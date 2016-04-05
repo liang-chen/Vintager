@@ -2,7 +2,7 @@
 # main function, a quick testing
 
 from pdfReader import PdfReader
-from symbolDetector import SymbolDetector
+from symbolDetector import SymbolDetector, DetectorOption
 from train import training
 
 if "__main__" == __name__:
@@ -12,5 +12,6 @@ if "__main__" == __name__:
     except Exception:
         print Exception
 
-    training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", "/Users/Hipapa/Projects/Git/Vintager/annotations/train.ant", "hog")
-    #    sd = SymbolDetector(None)
+    #training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", "/Users/Hipapa/Projects/Git/Vintager/annotations/train.ant", "hog")
+    option = DetectorOption("hog_svm")
+    sd = SymbolDetector(option)

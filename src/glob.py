@@ -12,7 +12,7 @@ symbol_label_parms = {
     "flat": [3*space_unit, 3*space_unit],
     "sharp": [3*space_unit, 3*space_unit],
     "natural": [3*space_unit, 3*space_unit],
-    "solid_note_head": [2*space_unit, 2*space_unit],
+    "solid_note_head": [3*space_unit, 3*space_unit],
     "open_note_head": [2*space_unit, 2*space_unit],
     "whole_note_head": [2*space_unit, 2*space_unit]
 }

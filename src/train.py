@@ -7,7 +7,7 @@ from glob import *
 from symbol import Symbol, LOC, BBox
 from sklearn.svm import SVC
 from sklearn.externals import joblib
-#from utils import hog
+from utils import hog
 
 
 def read_annotations(annotation_file_path):
@@ -74,6 +74,7 @@ def training(img_file_path, annotation_file_path, detector_name):
     im = cv2.imread(img_file_path, 0)
     annotations = read_annotations(annotation_file_path)
     pos_data, neg_data = prepare_data_from_annotation(im, annotations, "solid_note_head")
+    neg_data = neg_data[:400]
     img_data = pos_data + neg_data
 
     if detector_name == "hog":
@@ -81,39 +82,41 @@ def training(img_file_path, annotation_file_path, detector_name):
         #svm_type = cv2.ml.SVM_C_SVC,
         #C = 2.67, gamma = 5.383 )
 
-        winSize = (64, 64)
-        blockSize = (16, 16)
-        blockStride = (8, 8)
-        cellSize = (8, 8)
-        nbins = 9
-        derivAperture = 1
-        winSigma = 4.
-        histogramNormType = 0
-        L2HysThreshold = 2.0000000000000001e-01
-        gammaCorrection = 0
-        nlevels = 64
-        hog = cv2.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins,derivAperture,winSigma, histogramNormType,L2HysThreshold,gammaCorrection,nlevels)
-        hog.save("../models/hog.xml")
-        # winStride = (8, 8)
-        # padding = (8, 8)
-        locations = ((0,0),)
-        hog_data = [hog.compute(im,None, None, locations) for im in img_data]
+        # winSize = (64, 64)
+        # blockSize = (16, 16)
+        # blockStride = (8, 8)
+        # cellSize = (8, 8)
+        # nbins = 9
+        # derivAperture = 1
+        # winSigma = 4.
+        # histogramNormType = 0
+        # L2HysThreshold = 2.0000000000000001e-01
+        # gammaCorrection = 0
+        # nlevels = 64
+        # hog = cv2.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins,derivAperture,winSigma, histogramNormType,L2HysThreshold,gammaCorrection,nlevels)
+        # hog.save("../models/hog.xml")
+        # # winStride = (8, 8)
+        # # padding = (8, 8)
+        # locations = ((0,0),)
+        # hog_data = [hog.compute(im,None, None, locations) for im in img_data]
+        hog_data = [hog(im) for im in img_data]
+        print hog_data[0].shape
+        hog_data.append(np.zeros(64))
 
         #print hog_data[0].shape
         #return
-        train_data = np.array(np.float32(hog_data).reshape(-1, 1764))
-        responses = np.array([1]*len(pos_data) + [0]*len(neg_data))
+        train_data = np.array(np.float32(hog_data))
+        responses = np.array([1]*len(pos_data) + [-1]*(len(neg_data) + 1))
+
         # svm = cv2.ml.SVM_create()
         # svm.setType(cv2.ml.SVM_C_SVC)
-        # svm.setGamma(5.383)
-        # svm.setC(2.67)
         # svm.setKernel(cv2.ml.SVM_LINEAR)
         # svm.train(train_data, cv2.ml.ROW_SAMPLE, responses)
-        # svm.save('hog_svm.dat')
+        #svm.save('hog_svm.dat')
 
-        clf = SVC(kernel='linear', C = 2.67, gamma = 5.383, verbose = True)
+        print train_data[400]
+        clf = SVC(kernel = 'linear', gamma = 5.383, max_iter = 5000000, verbose = True)
         clf.fit(train_data, responses)
         print len(pos_data), len(neg_data)
-        print train_data[0]
-        print clf.predict(train_data[0].reshape(-1, 1764))
+        print clf.predict(train_data)
         joblib.dump(clf, '../models/hog_svm.pkl')

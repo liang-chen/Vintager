@@ -6,6 +6,7 @@
 import cv2
 import numpy as np
 
+
 class DetectorOption:
     def __init__(self, name):
         self.name = name

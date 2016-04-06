@@ -6,9 +6,10 @@ import cv2
 import numpy as np
 from glob import *
 from symbol import Symbol, LOC, BBox
+from sklearn.svm import SVC
+from sklearn.externals import joblib
 
 def hog(img):
-    print type(img)
     bin_n = 16  # Number of bins
     gx = cv2.Sobel(img, cv2.CV_32F, 1, 0)
     gy = cv2.Sobel(img, cv2.CV_32F, 0, 1)
@@ -84,10 +85,14 @@ def training(img_file_path, annotation_file_path, detector_name):
         hog_data = [hog(im) for im in img_data]
         train_data = np.float32(hog_data).reshape(-1, 64)
         responses = np.array([1]*len(pos_data) +  [-1]*len(neg_data))
-        svm = cv2.ml.SVM_create()
-        svm.setType(cv2.ml.SVM_C_SVC)
-        svm.setGamma(5.383)
-        svm.setC(2.67)
-        svm.setKernel(cv2.ml.SVM_LINEAR)
-        svm.train(train_data, cv2.ml.ROW_SAMPLE, responses)
-        svm.save('hog_svm.dat')
+        # svm = cv2.ml.SVM_create()
+        # svm.setType(cv2.ml.SVM_C_SVC)
+        # svm.setGamma(5.383)
+        # svm.setC(2.67)
+        # svm.setKernel(cv2.ml.SVM_LINEAR)
+        # svm.train(train_data, cv2.ml.ROW_SAMPLE, responses)
+        # svm.save('hog_svm.dat')
+
+        clf = SVC()
+        clf.fit(train_data, responses)
+        joblib.dump(clf, '../models/hog_svm.pkl')

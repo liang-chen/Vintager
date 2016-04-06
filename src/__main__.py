@@ -12,6 +12,6 @@ if "__main__" == __name__:
     except Exception:
         print Exception
 
-    #training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", "/Users/Hipapa/Projects/Git/Vintager/annotations/train.ant", "hog")
-    option = DetectorOption("hog_svm")
-    sd = SymbolDetector(option)
+    training("/Users/Hipapa/Projects/Git/Vintager/data/train0.jpg", "/Users/Hipapa/Projects/Git/Vintager/annotations/train.ant", "hog")
+    #option = DetectorOption("hog_svm")
+    #sd = SymbolDetector(option)

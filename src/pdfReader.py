@@ -1,5 +1,5 @@
 
-# convert pdf to pixel image
+# convert pdf to jpeg image
 # dependent on the installation of ImageMagick and wand binding in Python
 
 # from wand.image import Image

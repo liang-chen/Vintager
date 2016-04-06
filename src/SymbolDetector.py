@@ -9,6 +9,7 @@ from sklearn.externals import joblib
 from glob import *
 from utils import hog
 
+
 class DetectorOption:
     def __init__(self, name):
         self.name = name
@@ -37,12 +38,11 @@ class SymbolDetector:
         for i in range(0, tot_rows - rows, sample_step):
             for j in range(0, tot_cols - cols, sample_step):
                 sub_im = im[i:i+rows, j:j+cols]
-
                 #if self.model.predict(self.extractor.compute(sub_im, None, None, ((0,0),)).reshape(-1,1764)) == 1:
-                if self.model.predict(self.extractor(sub_im).reshape(-1,64)) == 1:
+                feature = self.extractor(sub_im)
+                feature = feature.reshape(-1,feature.size)
+                if self.model.predict(feature) == 1:
                     detected.append((i,j))
-                    #print i, j
-
 
         for (i,j) in detected:
             cv2.rectangle(im, (i, j), (i + rows, j + cols), (0, 255, 0), 2)

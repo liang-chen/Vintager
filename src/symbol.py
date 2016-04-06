@@ -4,15 +4,15 @@
 
 class LOC:
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        self.x = int(x)
+        self.y = int(y)
 
 
 class BBox:
     def __init__(self, loc, rows, cols):
         self.loc = loc
-        self.rows = rows
-        self.cols = cols
+        self.rows = int(rows)
+        self.cols = int(cols)
 
 
 class Symbol:
@@ -28,17 +28,17 @@ class Symbol:
 
     def get_center(self):
         loc = self.__bbox__.loc
-        loc.x += self.__bbox__.cols*0.5
-        loc.y += self.__bbox__.rows*0.5
+        loc.x += int(self.__bbox__.cols*0.5)
+        loc.y += int(self.__bbox__.rows*0.5)
 
     def set_bbox(self, center, rows, cols):
         loc = LOC(center.x - cols*0.5, center.y - rows*0.5)
-        if self.__bbox__ == None:
+        if self.__bbox__ is None:
             self.__bbox__ = BBox(loc, rows, cols)
         else:
             self.__bbox__.loc = loc
-            self.__bbox__.rows = rows
-            self.__bbox__.cols = cols
+            self.__bbox__.rows = int(rows)
+            self.__bbox__.cols = int(cols)
 
     def set_label(self, label):
         self.__label__ = label

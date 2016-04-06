@@ -10,8 +10,8 @@ if "__main__" == __name__:
     data_dir = '../data/'
     anno_dir = '../annotations/'
 
-    training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
-    pr = PdfReader(data_dir + "test.pdf")
+    #training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
+    pr = PdfReader(data_dir + "train.pdf")
     try:
         pr.read()
     except Exception:

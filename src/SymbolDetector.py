@@ -34,7 +34,7 @@ class SymbolDetector:
         detected = []
         rows = int(rows)
         cols = int(cols)
-        sample_step = 10
+        sample_step = 2
         for i in range(0, tot_rows - rows, sample_step):
             for j in range(0, tot_cols - cols, sample_step):
                 sub_im = im[i:i+rows, j:j+cols]
@@ -44,10 +44,11 @@ class SymbolDetector:
                 if self.model.predict(feature) == 1:
                     detected.append((i,j))
 
-        for (i,j) in detected:
-            cv2.rectangle(im, (i, j), (i + rows, j + cols), (0, 255, 0), 2)
         if mode == "show":
-            cv2.imshow("image", im)
+            rgb_im = cv2.cvtColor(im, cv2.COLOR_GRAY2RGB)
+            for (i, j) in detected:
+                cv2.rectangle(rgb_im, (j, i), (j + cols, i + rows), (0, 255, 0), 2)
+            cv2.imshow("image", rgb_im)
             cv2.waitKey(0)
         elif mode == "noshow":
             return

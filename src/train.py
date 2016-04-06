@@ -60,8 +60,7 @@ def prepare_data_from_annotation(im, annotations, label):
         pos_data = [get_sub_im(im, s) for s in symbols if s is not None]
 
         for key in annotations.keys():
-            if key != label and key in symbol_label_parms.keys():
-                print key,label
+            if key != label: #and key in symbol_label_parms.keys():
                 positions = annotations[key]
                 symbols = [get_symbol(label, loc) for loc in positions]
                 neg_data = neg_data + [get_sub_im(im, s) for s in symbols if s is not None]
@@ -76,15 +75,11 @@ def training(img_file_path, annotation_file_path, detector_name):
     pos_data, neg_data = prepare_data_from_annotation(im, annotations, "solid_note_head")
     img_data = pos_data + neg_data
 
-
-    for pos in neg_data:
+    for pos in pos_data:
         cv2.imshow("image", pos)
         cv2.waitKey(0)
 
     if detector_name == "hog":
-        #svm_params = dict(kernel_type=cv2.ml.SVM_LINEAR,
-        #svm_type = cv2.ml.SVM_C_SVC,
-        #C = 2.67, gamma = 5.383 )
 
         # winSize = (64, 64)
         # blockSize = (16, 16)
@@ -104,21 +99,20 @@ def training(img_file_path, annotation_file_path, detector_name):
         # locations = ((0,0),)
         # hog_data = [hog.compute(im,None, None, locations) for im in img_data]
         hog_data = [hog(im) for im in img_data]
-        print hog_data[0].shape
+        hog_data.append(np.ones(hog_data[0].size))
 
         #print hog_data[0].shape
         #return
         train_data = np.array(np.float32(hog_data))
-        responses = np.array([1]*len(pos_data) + [0]*len(neg_data))
+        responses = np.array([1]*len(pos_data) + [0]*(len(neg_data)+1))
 
-        svm = cv2.ml.SVM_create()
-        svm.setType(cv2.ml.SVM_C_SVC)
-        svm.setKernel(cv2.ml.SVM_LINEAR)
-        svm.train(train_data, cv2.ml.ROW_SAMPLE, responses)
-        print svm.predict(train_data)
+        # svm = cv2.ml.SVM_create()
+        # svm.setType(cv2.ml.SVM_C_SVC)
+        # svm.setKernel(cv2.ml.SVM_LINEAR)
+        # svm.train(train_data, cv2.ml.ROW_SAMPLE, responses)
+        # print svm.predict(train_data)
         #svm.save('hog_svm.dat')
 
-        print train_data[0]
         clf = SVC(kernel = 'linear', C = 2.67, verbose = True)
         clf.fit(train_data, responses)
         print len(pos_data), len(neg_data)

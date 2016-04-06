@@ -5,12 +5,12 @@
 # from wand.image import Image
 # from wand.display import display
 import sys
-
+import cv2
 
 class PdfReader:
     def __init__(self, path):
         self.path = path
-        # self.image = None
+        self.images = []
 
     def read(self):
 
@@ -50,6 +50,7 @@ class PdfReader:
 
             jpgfile.write(jpg)
             jpgfile.close()
+            self.images.append(cv2.imread(self.path[:-4] + "%d.jpg" % njpg, 0))
 
             njpg += 1
             i = iend

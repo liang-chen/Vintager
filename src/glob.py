@@ -16,3 +16,5 @@ symbol_label_parms = {
     "open_note_head": [2*space_unit, 2*space_unit],
     "whole_note_head": [2*space_unit, 2*space_unit]
 }
+default_symbol_rows = 3*space_unit
+default_symbol_cols = 3*space_unit

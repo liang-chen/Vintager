@@ -20,4 +20,4 @@ if "__main__" == __name__:
 
     option = DetectorOption("hog_svm")
     sd = SymbolDetector(option)
-    #sd.detect(pr.images[0], "solid_note_head", "show")
+    sd.detect(pr.images[0], "solid_note_head", "show")

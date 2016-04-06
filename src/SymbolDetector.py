@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from sklearn.externals import joblib
 from glob import *
-from utils import hog
+#from utils import hog
 
 class DetectorOption:
     def __init__(self, name):
@@ -20,7 +20,7 @@ class SymbolDetector:
             if option.name == "hog_svm":
                 dir = '../models/'
                 self.model = joblib.load(dir + option.name + '.pkl')
-                self.extractor = hog
+                self.extractor = cv2.HOGDescriptor(dir + "hog.xml")
 
         except Exception:
             print Exception
@@ -36,8 +36,8 @@ class SymbolDetector:
         for i in range(0, tot_rows - rows, sample_step):
             for j in range(0, tot_cols - cols, sample_step):
                 sub_im = im[i:i+rows, j:j+cols]
-                print self.model.predict(self.extractor(sub_im).reshape(-1,64))
-                if self.model.predict(self.extractor(sub_im).reshape(-1,64)) == 1:
+                print self.model.predict(self.extractor(sub_im, None, None, (0,0)).reshape(-1,64))
+                if self.model.predict(self.extractor(sub_im, None, None, (0,0)).reshape(-1,64)) == 1:
                     detected.append((i,j))
                     print i, j
 

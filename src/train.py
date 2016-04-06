@@ -75,9 +75,9 @@ def training(img_file_path, annotation_file_path, detector_name):
     pos_data, neg_data = prepare_data_from_annotation(im, annotations, "solid_note_head")
     img_data = pos_data + neg_data
 
-    for pos in pos_data:
-        cv2.imshow("image", pos)
-        cv2.waitKey(0)
+    # for pos in pos_data:
+    #     cv2.imshow("image", pos)
+    #     cv2.waitKey(0)
 
     if detector_name == "hog":
 
@@ -99,12 +99,12 @@ def training(img_file_path, annotation_file_path, detector_name):
         # locations = ((0,0),)
         # hog_data = [hog.compute(im,None, None, locations) for im in img_data]
         hog_data = [hog(im) for im in img_data]
-        hog_data.append(np.ones(hog_data[0].size))
+        #hog_data.append(np.ones(hog_data[0].size)) #add background
 
         #print hog_data[0].shape
         #return
         train_data = np.array(np.float32(hog_data))
-        responses = np.array([1]*len(pos_data) + [0]*(len(neg_data)+1))
+        responses = np.array([1]*len(pos_data) + [0]*(len(neg_data)+0))
 
         # svm = cv2.ml.SVM_create()
         # svm.setType(cv2.ml.SVM_C_SVC)
@@ -113,7 +113,7 @@ def training(img_file_path, annotation_file_path, detector_name):
         # print svm.predict(train_data)
         #svm.save('hog_svm.dat')
 
-        clf = SVC(kernel = 'linear', C = 2.67, verbose = True)
+        clf = SVC(kernel = 'rbf', C = 2.67, max_iter = 5000000, verbose = True)
         clf.fit(train_data, responses)
         print len(pos_data), len(neg_data)
         print clf.predict(train_data)

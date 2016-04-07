@@ -13,6 +13,6 @@ def hog(img):
     mag_cells = mag[:10,:10], mag[10:,:10], mag[:10,10:], mag[10:,10:]
     hists = [np.bincount(b.ravel(), m.ravel(), bin_n) for b, m in zip(bin_cells, mag_cells)]
     hist = np.hstack(hists)     # hist is a 64 bit vector
-    #hist = hist/1000.0
-    hist = np.squeeze(img.reshape(-1, img.size)/256.0) # test
+    hist = hist/1000.0
+    #hist = np.squeeze(img.reshape(-1, img.size)/256.0) # test
     return hist

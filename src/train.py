@@ -72,12 +72,12 @@ def prepare_data_from_annotation(im, annotations, label):
 def training(img_file_path, annotation_file_path, detector_name):
     im = cv2.imread(img_file_path, 0)
     annotations = read_annotations(annotation_file_path)
-    pos_data, neg_data = prepare_data_from_annotation(im, annotations, "solid_note_head")
+    pos_data, neg_data = prepare_data_from_annotation(im, annotations, "treble_clef")
     img_data = pos_data + neg_data
 
-    # for pos in pos_data:
-    #     cv2.imshow("image", pos)
-    #     cv2.waitKey(0)
+    for pos in pos_data:
+        cv2.imshow("image", pos)
+        cv2.waitKey(0)
 
     if detector_name == "hog":
 

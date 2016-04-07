@@ -113,7 +113,7 @@ def training(img_file_path, annotation_file_path, detector_name):
         # print svm.predict(train_data)
         #svm.save('hog_svm.dat')
 
-        clf = SVC(kernel = 'rbf', C = 2.67, max_iter = 5000000, verbose = True)
+        clf = SVC(kernel = 'linear', C = 2.67, max_iter = 5000000, verbose = True)
         clf.fit(train_data, responses)
         print len(pos_data), len(neg_data)
         print clf.predict(train_data)

@@ -1,11 +1,12 @@
 
 # convert pdf to jpeg image
-# dependent on the installation of ImageMagick and wand binding in Python
+# dependent on ImageMagick and its wand binding
 
 # from wand.image import Image
 # from wand.display import display
 import sys
 import cv2
+
 
 class PdfReader:
     def __init__(self, path):

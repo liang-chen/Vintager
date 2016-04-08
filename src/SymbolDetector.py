@@ -41,9 +41,11 @@ class SymbolDetector:
                 #if self.model.predict(self.extractor.compute(sub_im, None, None, ((0,0),)).reshape(-1,1764)) == 1:
                 feature = self.extractor(sub_im)
                 feature = feature.reshape(-1,feature.size)
+                #print i,j
                 #print self.model.predict_proba(feature)[0][0], self.model.predict_proba(feature)[0][1]
-                if 100*self.model.predict_proba(feature)[0][0] <= self.model.predict_proba(feature)[0][1]:
+                if 10*self.model.predict_proba(feature)[0][0] <= self.model.predict_proba(feature)[0][1]:
                     detected.append((i,j))
+                    #print i,j
 
         if mode == "show":
             rgb_im = cv2.cvtColor(im, cv2.COLOR_GRAY2RGB)

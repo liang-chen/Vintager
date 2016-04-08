@@ -72,7 +72,7 @@ def prepare_data_from_annotation(im, annotations, label):
 def training(img_file_path, annotation_file_path, detector_name):
     im = cv2.imread(img_file_path, 0)
     annotations = read_annotations(annotation_file_path)
-    pos_data, neg_data = prepare_data_from_annotation(im, annotations, "treble_clef")
+    pos_data, neg_data = prepare_data_from_annotation(im, annotations, "solid_note_head")
     img_data = pos_data + neg_data
 
     # for pos in pos_data:

@@ -2,6 +2,8 @@
 # shared parameters
 # better to be written in file
 
+from math import ceil
+
 staff_height = 30.0
 space_unit = staff_height/4.0
 symbol_label_parms = {
@@ -19,4 +21,4 @@ symbol_label_parms = {
 default_symbol_rows = 3*space_unit
 default_symbol_cols = 3*space_unit
 
-uni_feature_len = 40*space_unit*space_unit
+uni_feature_len = int(ceil(40*space_unit*space_unit))

@@ -75,45 +75,21 @@ def training(img_file_path, annotation_file_path, detector_name):
     pos_data, neg_data = prepare_data_from_annotation(im, annotations, "treble_clef")
     img_data = pos_data + neg_data
 
-    for pos in pos_data:
-        cv2.imshow("image", pos)
-        cv2.waitKey(0)
+    # for pos in pos_data:
+    #     cv2.imshow("image", pos)
+    #     cv2.waitKey(0)
 
     if detector_name == "hog":
-
-        # winSize = (64, 64)
-        # blockSize = (16, 16)
-        # blockStride = (8, 8)
-        # cellSize = (8, 8)
-        # nbins = 9
-        # derivAperture = 1
-        # winSigma = 4.
-        # histogramNormType = 0
-        # L2HysThreshold = 2.0000000000000001e-01
-        # gammaCorrection = 0
-        # nlevels = 64
-        # hog = cv2.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins,derivAperture,winSigma, histogramNormType,L2HysThreshold,gammaCorrection,nlevels)
-        # hog.save("../models/hog.xml")
-        # # winStride = (8, 8)
-        # # padding = (8, 8)
-        # locations = ((0,0),)
-        # hog_data = [hog.compute(im,None, None, locations) for im in img_data]
         hog_data = [hog(im) for im in img_data]
         #hog_data.append(np.ones(hog_data[0].size)) #add background
 
-        #print hog_data[0].shape
+        print hog_data[0].shape
         #return
+        #print hog_data
         train_data = np.array(np.float32(hog_data))
         responses = np.array([1]*len(pos_data) + [0]*(len(neg_data)+0))
 
-        # svm = cv2.ml.SVM_create()
-        # svm.setType(cv2.ml.SVM_C_SVC)
-        # svm.setKernel(cv2.ml.SVM_LINEAR)
-        # svm.train(train_data, cv2.ml.ROW_SAMPLE, responses)
-        # print svm.predict(train_data)
-        #svm.save('hog_svm.dat')
-
-        clf = SVC(kernel = 'linear', C = 2.67, max_iter = 5000000, verbose = True)
+        clf = SVC(kernel = 'linear', C = 2.67, max_iter = 5000000, probability=True, verbose = True)
         clf.fit(train_data, responses)
         print len(pos_data), len(neg_data)
         print clf.predict(train_data)

@@ -13,8 +13,10 @@ symbol_label_parms = {
     "sharp": [3*space_unit, 3*space_unit],
     "natural": [3*space_unit, 3*space_unit],
     "solid_note_head": [3*space_unit, 3*space_unit],
-    "open_note_head": [2*space_unit, 2*space_unit],
-    "whole_note_head": [2*space_unit, 2*space_unit]
+    "open_note_head": [3*space_unit, 3*space_unit],
+    "whole_note_head": [3*space_unit, 3*space_unit]
 }
 default_symbol_rows = 3*space_unit
 default_symbol_cols = 3*space_unit
+
+uni_feature_len = 40*space_unit*space_unit

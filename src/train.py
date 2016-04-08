@@ -47,7 +47,12 @@ def get_symbol(label, loc):
 
 def get_sub_im(im, s):
     bbox = s.get_bbox()
-    return im[bbox.loc.y:bbox.loc.y + bbox.rows, bbox.loc.x:bbox.loc.x + bbox.cols]
+    sub_im = im[bbox.loc.y:bbox.loc.y + bbox.rows, bbox.loc.x:bbox.loc.x + bbox.cols]
+    # cv2.imshow("image", sub_im)
+    # cv2.waitKey(0)
+    # cv2.imshow("image", cv2.resize(sub_im, uni_size))
+    # cv2.waitKey(0)
+    return cv2.resize(sub_im, uni_size)
 
 
 def prepare_data_from_annotation(im, annotations, label):

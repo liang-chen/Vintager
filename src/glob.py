@@ -22,3 +22,5 @@ default_symbol_rows = 3*space_unit
 default_symbol_cols = 3*space_unit
 
 uni_feature_len = int(ceil(40*space_unit*space_unit))
+
+uni_size = (int(5*space_unit), int(5*space_unit))

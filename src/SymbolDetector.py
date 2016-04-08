@@ -38,6 +38,7 @@ class SymbolDetector:
         for i in range(0, tot_rows - rows, sample_step):
             for j in range(0, tot_cols - cols, sample_step):
                 sub_im = im[i:i+rows, j:j+cols]
+                sub_im = cv2.resize(sub_im, uni_size)
                 #if self.model.predict(self.extractor.compute(sub_im, None, None, ((0,0),)).reshape(-1,1764)) == 1:
                 feature = self.extractor(sub_im)
                 feature = feature.reshape(-1,feature.size)

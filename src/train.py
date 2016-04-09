@@ -55,30 +55,30 @@ def get_sub_im(im, s):
     return cv2.resize(sub_im, uni_size)
 
 
-def prepare_data_from_annotation(im, annotations, label):
-    pos_data = []
-    neg_data = []
+def prepare_data_from_annotation(im, annotations):
+
+    data = []
+    labels = []
 
     try:
-        positions = annotations[label]
-        symbols = [get_symbol(label, loc) for loc in positions]
-        pos_data = [get_sub_im(im, s) for s in symbols if s is not None]
+        symbols = []
+        for label in annotations.keys():
 
-        for key in annotations.keys():
-            if key != label: #and key in symbol_label_parms.keys():
-                positions = annotations[key]
-                symbols = [get_symbol(label, loc) for loc in positions]
-                neg_data = neg_data + [get_sub_im(im, s) for s in symbols if s is not None]
+            locs = annotations[label]
+            sl = [get_symbol(label, loc) for loc in locs]
+            symbols = symbols + sl
+        data = [get_sub_im(im, s) for s in symbols if s is not None]
+        labels = [s.get_label() for s in symbols if s is not None]
+
     except Exception:
         print "nothing"
-    return pos_data, neg_data
+    return data, labels
 
 
 def training(img_file_path, annotation_file_path, detector_name):
     im = cv2.imread(img_file_path, 0)
     annotations = read_annotations(annotation_file_path)
-    pos_data, neg_data = prepare_data_from_annotation(im, annotations, "solid_note_head")
-    img_data = pos_data + neg_data
+    img_data, labels = prepare_data_from_annotation(im, annotations)
 
     # for pos in pos_data:
     #     cv2.imshow("image", pos)
@@ -92,10 +92,11 @@ def training(img_file_path, annotation_file_path, detector_name):
         #return
         #print hog_data
         train_data = np.array(np.float32(hog_data))
-        responses = np.array([1]*len(pos_data) + [0]*(len(neg_data)+0))
+        labels = np.array(labels)
+        #labels = np.array([1]*len(pos_data) + [0]*(len(neg_data)+0))
 
         clf = SVC(kernel = 'linear', C = 2.67, max_iter = 5000000, probability=True, verbose = True)
-        clf.fit(train_data, responses)
-        print len(pos_data), len(neg_data)
-        print clf.predict(train_data)
+        clf.fit(train_data, labels)
+        #print len(pos_data), len(neg_data)
+        #print clf.predict(train_data)
         joblib.dump(clf, '../models/hog_svm.pkl')

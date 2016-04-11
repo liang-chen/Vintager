@@ -44,7 +44,8 @@ class SymbolDetector:
                 feature = feature.reshape(-1,feature.size)
                 #print i,j
                 #print self.model.predict_proba(feature)[0][0], self.model.predict_proba(feature)[0][1]
-                if 10*self.model.predict_proba(feature)[0][0] <= self.model.predict_proba(feature)[0][1]:
+                #if 10*self.model.predict_proba(feature)[0][0] <= self.model.predict_proba(feature)[0][1]:
+                if self.model.predict(feature) == label:
                     detected.append((i,j))
                     #print i,j
 

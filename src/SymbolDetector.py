@@ -54,7 +54,8 @@ class SymbolDetector:
             font = cv2.FONT_HERSHEY_SIMPLEX
             for (i, j) in detected:
                 cv2.rectangle(rgb_im, (j, i), (j + cols, i + rows), (0, 255, 0), 2)
-                cv2.putText(rgb_im, label, (j - 10, i), font, 1, (0, 255, 0), 2)
+                #cv2.putText(rgb_im, label, (j - 10, i), font, 1, (0, 255, 0), 2)
+            cv2.imwrite(label+".jpg", rgb_im)
             cv2.imshow("image", rgb_im)
             cv2.waitKey(0)
         elif mode == "noshow":
@@ -100,6 +101,7 @@ class SymbolDetector:
                 cols = int(cols)
                 cv2.rectangle(rgb_im, (j, i), (j + cols, i + rows), (0, 0, 255), 2)
                 cv2.putText(rgb_im, label, (j - 20, i - 10), font, 0.4, (0, 0, 255), 1)
+            cv2.imwrite('detected.jpg', rgb_im)
             cv2.imshow("image", rgb_im)
             cv2.waitKey(0)
         elif mode == "noshow":

@@ -15,11 +15,6 @@ def hog(img):
     hist = np.hstack(hists)     # hist is a 64 bit vector
     hist = hist/1000.0
 
-    hist = np.squeeze(img.reshape(-1, img.size)/256.0) # test
-    #print hist
-
-    #if uni_feature_len > len(hist):
-    #    hist = np.pad(hist, (0, uni_feature_len - len(hist)), mode = 'constant', constant_values=0)
-    #return hist[:uni_feature_len]
+    hist = np.squeeze(img.reshape(-1, img.size)/256.0) # using pixel features
 
     return hist

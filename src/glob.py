@@ -17,10 +17,10 @@ symbol_label_parms = {
     "solid_note_head": [3*space_unit, 3*space_unit],
     "open_note_head": [3*space_unit, 3*space_unit],
     "whole_note_head": [3*space_unit, 3*space_unit],
-    "background": [4*space_unit, 4*space_unit]
+    "background": [3*space_unit, 3*space_unit]
 }
-default_symbol_rows = 3*space_unit
-default_symbol_cols = 3*space_unit
+default_symbol_rows = int(3*space_unit)
+default_symbol_cols = int(3*space_unit)
 
 uni_feature_len = int(ceil(40*space_unit*space_unit))
 

@@ -65,7 +65,7 @@ class SymbolDetector:
     def detect_all(self, im, mode):
         tot_rows, tot_cols = im.shape[:2]
         detected = []
-        step_size = 10
+        step_size = 2
         cls = self.model.classes_
         for i in xrange(0, tot_rows, step_size):
             for j in xrange(0, tot_cols, step_size):
@@ -82,6 +82,7 @@ class SymbolDetector:
                     # how to get comparable score here???
                     #temp_prob = self.model.predict_proba(feature)[0][np.where(cls == label)]
 
+        #suppressed = [(i,j,label) for (prob,i,j,label) in detected if label is not "background"]
         ##Non-Maxima Suppression
         detected.sort(key=lambda tup: tup[0])
         hashed = np.zeros((tot_rows, tot_cols), dtype=bool)

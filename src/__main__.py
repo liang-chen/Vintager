@@ -38,5 +38,6 @@ if "__main__" == __name__:
     option = DetectorOption("hog_svm")
     sd = SymbolDetector(option)
     sd.detect_all(pr.images[0][1:500,1:500],"show")
+    #sd.detect(pr.images[0][1:500,1:500], "treble_clef", "show")
     #for label in symbol_label_parms.keys():
-    #    sd.detect(pr.images[0], label, "show")
+     #   sd.detect(pr.images[0], label, "show")

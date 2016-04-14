@@ -91,8 +91,8 @@ class SymbolDetector:
             if label == "background" or hashed[i][j]:
                 continue
             suppressed.append((i,j,label))
-            print i,j
-            hashed[max(0, i - default_symbol_rows / 2): min(i + default_symbol_rows / 2, tot_rows - 1)][
+            print i,j,score
+            hashed[max(0, i - default_symbol_rows / 2): min(i + default_symbol_rows / 2, tot_rows - 1),
             max(0, j - default_symbol_cols / 2): min(j + default_symbol_cols / 2, tot_cols - 1)] = True
             #[rows, cols] = symbol_label_parms[label] #which suppression region should I use? the symbol bbox or the default bbox?
 

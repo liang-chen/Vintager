@@ -2,9 +2,7 @@
 # annotate symbols with boundingboxes
 
 import cv2
-from symbol import LOC, BBox, Symbol
-from glob import symbol_label_parms
-from train import get_symbol, get_sub_im
+from utils import create_symbol
 
 
 class SymbolAnnotator:
@@ -16,7 +14,7 @@ class SymbolAnnotator:
     def load_symbols(self, annotations):
         for label in annotations.keys():
             locs = annotations[label]
-            sl = [get_symbol(label, loc) for loc in locs]
+            sl = [create_symbol(label, loc) for loc in locs]
             self.__symbols__ += [s for s in sl if s is not None]
 
     def display(self):

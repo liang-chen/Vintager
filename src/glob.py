@@ -1,5 +1,5 @@
 
-# shared parameters
+# global parameters
 # better to be written in file
 
 from math import ceil
@@ -7,17 +7,17 @@ from math import ceil
 staff_height = 30.0
 space_unit = staff_height/4.0
 symbol_label_parms = {
-    "bar_line":[space_unit, 5*space_unit],
-    "treble_clef": [10*space_unit, 4*space_unit],
-    "bass_clef": [10*space_unit, 4*space_unit],
-    "alto_clef": [10*space_unit, 4*space_unit],
-    "flat": [3*space_unit, 3*space_unit],
-    "sharp": [3*space_unit, 3*space_unit],
-    "natural": [3*space_unit, 3*space_unit],
-    "solid_note_head": [3*space_unit, 3*space_unit],
-    "open_note_head": [3*space_unit, 3*space_unit],
-    "whole_note_head": [3*space_unit, 3*space_unit],
-    "background": [3*space_unit, 3*space_unit]
+    "bar_line": map(lambda x: int(x*space_unit), [1,5]),
+    "treble_clef": map(lambda x: int(x*space_unit), [10,4]),
+    "bass_clef": map(lambda x: int(x*space_unit), [10,4]),
+    "alto_clef": map(lambda x: int(x*space_unit), [10,4]),
+    "flat": map(lambda x: int(x*space_unit), [3,3]),
+    "sharp": map(lambda x: int(x*space_unit), [3,3]),
+    "natural": map(lambda x: int(x*space_unit), [3,3]),
+    "solid_note_head": map(lambda x: int(x*space_unit), [3,3]),
+    "open_note_head": map(lambda x: int(x*space_unit), [3,3]),
+    "whole_note_head": map(lambda x: int(x*space_unit), [3,3]),
+    "background": map(lambda x: int(x*space_unit), [3,3])
 }
 default_symbol_rows = int(3*space_unit)
 default_symbol_cols = int(3*space_unit)

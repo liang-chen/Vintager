@@ -8,7 +8,8 @@ from glob import *
 from symbol import Symbol, LOC, BBox
 from sklearn.svm import SVC
 from sklearn.externals import joblib
-from utils import hog
+from utils import create_symbol
+from feature import hog, pixel_vec
 
 
 def read_annotations(annotation_file_path):
@@ -32,28 +33,8 @@ def read_annotations(annotation_file_path):
     return annotations
 
 
-def get_symbol(label, loc):
-    if label not in symbol_label_parms:
-        return None
-    s = Symbol(label, None)
-
-    if label in symbol_label_parms.keys():
-        [rows, cols] = symbol_label_parms[label]
-    else:
-        rows = default_symbol_rows
-        cols = default_symbol_cols
-    s.set_bbox(loc, rows, cols)
-    return s
-
-
 def get_sub_im(im, s):
     bbox = s.get_bbox()
-
-    # cv2.imshow("image", sub_im)
-    # cv2.waitKey(0)
-    # cv2.imshow("image", cv2.resize(sub_im, uni_size))
-    # cv2.waitKey(0)
-
     (rows, cols) = im.shape
     if bbox.loc.y < 0 or bbox.loc.y >= rows or bbox.loc.y + bbox.rows < 0 or bbox.loc.y + bbox.rows >= rows:
         return None
@@ -84,7 +65,7 @@ def prepare_background_data(im, locs):
         x = random.randint(0, cols)
         l = LOC( x,y )
         if not is_in_loc_list(l, locs):
-            s = get_symbol("background", l)
+            s = create_symbol("background", l)
             sub_im = get_sub_im(im, s)
 
             if sub_im is not None:
@@ -107,7 +88,7 @@ def prepare_data_from_annotation(im, annotations):
 
             locs = annotations[label]
             pos_locs = pos_locs + locs
-            sl = [get_symbol(label, loc) for loc in locs]
+            sl = [create_symbol(label, loc) for loc in locs]
             symbols = symbols + sl
         data = [get_sub_im(im, s) for s in symbols if s is not None]
         labels = [s.get_label() for s in symbols if s is not None]
@@ -115,7 +96,6 @@ def prepare_data_from_annotation(im, annotations):
 
         labels += bk_labels
         data += bk_data
-        print "hoho"
         print len(labels), len(data)
     except Exception:
         print "prepare annotations"
@@ -127,23 +107,20 @@ def training(img_file_path, annotation_file_path, detector_name):
     annotations = read_annotations(annotation_file_path)
     img_data, labels = prepare_data_from_annotation(im, annotations)
 
-    # for pos in pos_data:
-    #     cv2.imshow("image", pos)
-    #     cv2.waitKey(0)
-
+    features = []
     if detector_name == "hog":
-        hog_data = [hog(im) for im in img_data]
-        #hog_data.append(np.ones(hog_data[0].size)) #add background
+        features = [hog(im) for im in img_data]
+    elif detector_name == "pixel":
+        features = [pixel_vec(im) for im in img_data]
+    else:
+        print("unknown detector.")
+        raise Exception
 
-        print hog_data[0].shape
-        #return
-        #print hog_data
-        train_data = np.array(np.float32(hog_data))
-        labels = np.array(labels)
-        #labels = np.array([1]*len(pos_data) + [0]*(len(neg_data)+0))
+    train_data = np.array(np.float32(features))
+    labels = np.array(labels)
 
-        clf = SVC(kernel = 'linear', C = 2.67, max_iter = 5000000, probability=True, verbose = True)
-        clf.fit(train_data, labels)
-        #print len(pos_data), len(neg_data)
-        #print clf.predict(train_data)
-        joblib.dump(clf, '../models/hog_svm.pkl')
+    clf = SVC(kernel='linear', C=2.67, decision_function_shape='ovr', max_iter=5000000, probability=False, verbose=True)
+    clf.fit(train_data, labels)
+    # print len(pos_data), len(neg_data)
+    # print clf.predict(train_data)
+    joblib.dump(clf, '../models/' + detector_name + '_svm.pkl')

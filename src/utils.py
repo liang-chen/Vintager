@@ -10,5 +10,6 @@ def create_symbol(label, loc):
         return None
 
     [rows, cols] = symbol_label_parms[label]
-    bbox = BBox(loc, rows, cols)
-    return Symbol(label, bbox)
+    sym = Symbol(label, None)
+    sym.set_bbox(loc, rows, cols)
+    return sym

@@ -13,7 +13,7 @@ if "__main__" == __name__:
     anno_dir = '../annotations/'
 
     ####training
-    #training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
+    training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
 
     ####display annotations
     # pr = PdfReader(data_dir + "train.pdf")
@@ -37,7 +37,7 @@ if "__main__" == __name__:
     ####detect symbols on test data
     option = DetectorOption("hog_svm")
     sd = SymbolDetector(option)
-    sd.detect_all(pr.images[0][1:500,1:500],"show")
+    sd.detect_all(pr.images[0][1:300,1:300],"show")
     #sd.detect(pr.images[0][1:500,1:500], "treble_clef", "show")
     #for label in symbol_label_parms.keys():
      #   sd.detect(pr.images[0], label, "show")

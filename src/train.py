@@ -36,18 +36,23 @@ def read_annotations(annotation_file_path):
 def get_sub_im(im, s):
     bbox = s.get_bbox()
     (rows, cols) = im.shape
-    if bbox.loc.y < 0 or bbox.loc.y >= rows or bbox.loc.y + bbox.rows < 0 or bbox.loc.y + bbox.rows >= rows:
+    y = bbox.get_loc().get_y()
+    x = bbox.get_loc().get_x()
+    brows = bbox.get_rows()
+    bcols = bbox.get_cols()
+    if y < 0 or y >= rows or y + brows < 0 or y + brows >= rows:
         return None
-    if bbox.loc.x < 0 or bbox.loc.x >= cols or bbox.loc.x + bbox.cols < 0 or bbox.loc.x + bbox.cols >= cols:
+    if x < 0 or x >= cols or x + bcols < 0 or x + bcols >= cols:
         return None
-    sub_im = im[bbox.loc.y:bbox.loc.y + bbox.rows, bbox.loc.x:bbox.loc.x + bbox.cols]
+    sub_im = im[y:y + brows, x:x + bcols]
     sub_im = cv2.resize(sub_im, uni_size)
+
     return sub_im
 
 
 def is_in_loc_list(loc, ll):
-    list = [[l.x, l.y] for l in ll]
-    if [loc.x, loc.y] in list:
+    list = [[l.get_x(), l.get_y()] for l in ll]
+    if [loc.get_x(), loc.get_y()] in list:
         return True
     else:
         return False
@@ -85,17 +90,18 @@ def prepare_data_from_annotation(im, annotations):
         symbols = []
         pos_locs = []
         for label in annotations.keys():
-
             locs = annotations[label]
             pos_locs = pos_locs + locs
             sl = [create_symbol(label, loc) for loc in locs]
             symbols = symbols + sl
-        data = [get_sub_im(im, s) for s in symbols if s is not None]
-        labels = [s.get_label() for s in symbols if s is not None]
-        bk_data, bk_labels = prepare_background_data(im, pos_locs)
+        data_label_pair = [(get_sub_im(im, s), s.get_label()) for s in symbols if s is not None]
+        data = [d for (d,l) in data_label_pair if d is not None]
+        labels = [l for (d,l) in data_label_pair if d is not None]
 
+        bk_data, bk_labels = prepare_background_data(im, pos_locs)
         labels += bk_labels
         data += bk_data
+
         print len(labels), len(data)
     except Exception:
         print "prepare annotations"
@@ -119,7 +125,9 @@ def training(img_file_path, annotation_file_path, detector_name):
     train_data = np.array(np.float32(features))
     labels = np.array(labels)
 
-    clf = SVC(kernel='linear', C=2.67, decision_function_shape='ovr', max_iter=5000000, probability=False, verbose=True)
+    clf = SVC(kernel='linear', C=2.67, decision_function_shape= "ovo", max_iter=5000000, probability=True, verbose=True)
+    print train_data.shape
+    print labels.shape
     clf.fit(train_data, labels)
     # print len(pos_data), len(neg_data)
     # print clf.predict(train_data)

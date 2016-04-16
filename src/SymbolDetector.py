@@ -80,15 +80,15 @@ class SymbolDetector:
                     if self.model.predict(feature) == label:
                         detected.append((self.model.predict_proba(feature)[0][np.where(cls == label)], i, j, label))
                     # how to get comparable score here???
-                    #temp_prob = self.model.predict_proba(feature)[0][np.where(cls == label)]
+                    #temp_prob = self.model.decision_function(feature)[0][np.where(cls == label)]
 
         #suppressed = [(i,j,label) for (prob,i,j,label) in detected if label is not "background"]
         ##Non-Maxima Suppression
-        detected.sort(key=lambda tup: tup[0])
+        detected.sort(key=lambda tup: tup[0], reverse=True)
         hashed = np.zeros((tot_rows, tot_cols), dtype=bool)
         suppressed = []
         for (score, i, j, label) in detected:
-            if label == "background" or hashed[i][j]:
+            if label == "background" or hashed[i][j] or label == "open_note_head":
                 continue
             suppressed.append((i,j,label))
             print i,j,score

@@ -1,3 +1,4 @@
-Vintager
-========
-A crowdsourcing Python-based music symbol annotator.
+Vintager Homepage
+=================
+**Vintager** is designed to integrate crowdsourcing annotation and automatic object detection for **Optical Music Recogntion**>
+

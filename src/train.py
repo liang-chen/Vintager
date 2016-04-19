@@ -13,6 +13,15 @@ from feature import hog, pixel_vec
 
 
 def read_annotations(annotation_file_path):
+    """
+
+    :param annotation_file_path: path to annotation file
+    :type annotation_file_path: string
+    :return: annotations
+    :rtype: dict[label: [locations]]
+    """
+
+
     annotations = {}
 
     try:
@@ -34,6 +43,16 @@ def read_annotations(annotation_file_path):
 
 
 def get_sub_im(im, s):
+    """
+    crop subimage for a certain symbol **s** from the whole image **im**
+    :param im: whole image
+    :type im: cv2.image
+    :param s: symbol
+    :type s: Symbol
+    :return: sub_im
+    :rtype: cv2.image
+    """
+
     bbox = s.get_bbox()
     (rows, cols) = im.shape
     y = bbox.get_loc().get_y()

@@ -37,6 +37,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="train.html" title="Training"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -52,8 +55,48 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="feature-extraction">
-<h1>Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-feature">
+<span id="feature-extraction"></span><h1>Feature Extraction<a class="headerlink" href="#module-feature" title="Permalink to this headline">¶</a></h1>
+<p>Feature Extraction Module</p>
+<p>Given a gray-level image, extract feature vectors in different ways:</p>
+<ol class="arabic simple">
+<li>vectorize pixels</li>
+<li>extract Histogram of Oriented Gradients(HOG)</li>
+</ol>
+<dl class="function">
+<dt id="feature.hog">
+<tt class="descclassname">feature.</tt><tt class="descname">hog</tt><big>(</big><em>img</em><big>)</big><a class="headerlink" href="#feature.hog" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>img</strong> (<em>cv2.image</em>) &#8211; input image</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">hist: output feature vector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.array(1, 64)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="feature.pixel_vec">
+<tt class="descclassname">feature.</tt><tt class="descname">pixel_vec</tt><big>(</big><em>img</em><big>)</big><a class="headerlink" href="#feature.pixel_vec" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>img</strong> (<em>cv2.image</em>) &#8211; input image</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">feature: output feature vector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy.array(1,img.size)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
@@ -96,6 +139,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="train.html" title="Training"
              >next</a> |</li>

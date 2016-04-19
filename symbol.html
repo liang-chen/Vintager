@@ -57,6 +57,336 @@
             
   <div class="section" id="symbol">
 <h1>Symbol<a class="headerlink" href="#symbol" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="symbol.LOC">
+<em class="property">class </em><tt class="descclassname">symbol.</tt><tt class="descname">LOC</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#symbol.LOC" title="Permalink to this definition">¶</a></dt>
+<dd><p>LOC class
+defines a location on a 2D plane</p>
+<dl class="method">
+<dt id="symbol.LOC.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#symbol.LOC.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>int</em>) &#8211; x-coordinate</li>
+<li><strong>y</strong> (<em>int</em>) &#8211; y-coordinate</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="symbol.LOC.__module__">
+<tt class="descname">__module__</tt><em class="property"> = 'symbol'</em><a class="headerlink" href="#symbol.LOC.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symbol.LOC.copy">
+<tt class="descname">copy</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.LOC.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>create a new LOC instance from the existing one</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">loc</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">LOC</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.LOC.get_x">
+<tt class="descname">get_x</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.LOC.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">x-coordinate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.LOC.get_y">
+<tt class="descname">get_y</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.LOC.get_y" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">y-coordinate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.LOC.set_x">
+<tt class="descname">set_x</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#symbol.LOC.set_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>set x-coordinate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>int</em>) &#8211; new x-coordinate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.LOC.set_y">
+<tt class="descname">set_y</tt><big>(</big><em>y</em><big>)</big><a class="headerlink" href="#symbol.LOC.set_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>set y-coordinate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>y</strong> (<em>int</em>) &#8211; new y-coordinate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symbol.BBox">
+<em class="property">class </em><tt class="descclassname">symbol.</tt><tt class="descname">BBox</tt><big>(</big><em>loc</em>, <em>rows</em>, <em>cols</em><big>)</big><a class="headerlink" href="#symbol.BBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>BBox Class
+creates bounding box for a certain symbol</p>
+<dl class="method">
+<dt id="symbol.BBox.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>loc</em>, <em>rows</em>, <em>cols</em><big>)</big><a class="headerlink" href="#symbol.BBox.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>loc</strong> (<em>LOC</em>) &#8211; upper-left corner</li>
+<li><strong>rows</strong> (<em>int</em>) &#8211; number of rows</li>
+<li><strong>cols</strong> (<em>int</em>) &#8211; number of columns</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="symbol.BBox.__module__">
+<tt class="descname">__module__</tt><em class="property"> = 'symbol'</em><a class="headerlink" href="#symbol.BBox.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symbol.BBox.get_cols">
+<tt class="descname">get_cols</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.BBox.get_cols" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">number of columns</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.BBox.get_loc">
+<tt class="descname">get_loc</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.BBox.get_loc" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the upper left corner of this bounding box</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">LOC</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.BBox.get_rows">
+<tt class="descname">get_rows</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.BBox.get_rows" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">number of rows</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.BBox.set_cols">
+<tt class="descname">set_cols</tt><big>(</big><em>cols</em><big>)</big><a class="headerlink" href="#symbol.BBox.set_cols" title="Permalink to this definition">¶</a></dt>
+<dd><p>set columns</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cols</strong> (<em>int</em>) &#8211; new number of columns</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.BBox.set_loc">
+<tt class="descname">set_loc</tt><big>(</big><em>loc</em><big>)</big><a class="headerlink" href="#symbol.BBox.set_loc" title="Permalink to this definition">¶</a></dt>
+<dd><p>set upper left corner</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>loc</strong> (<em>LOC</em>) &#8211; new location</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.BBox.set_rows">
+<tt class="descname">set_rows</tt><big>(</big><em>rows</em><big>)</big><a class="headerlink" href="#symbol.BBox.set_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>set rows</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rows</strong> (<em>int</em>) &#8211; new number of rows</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symbol.Symbol">
+<em class="property">class </em><tt class="descclassname">symbol.</tt><tt class="descname">Symbol</tt><big>(</big><em>label</em>, <em>bbox</em><big>)</big><a class="headerlink" href="#symbol.Symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Symbol Class
+creates a symbol object</p>
+<dl class="method">
+<dt id="symbol.Symbol.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>label</em>, <em>bbox</em><big>)</big><a class="headerlink" href="#symbol.Symbol.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>label</strong> (<em>string</em>) &#8211; name of the symbol</li>
+<li><strong>bbox</strong> (<em>BBox</em>) &#8211; bounding box of the symbol</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="symbol.Symbol.__module__">
+<tt class="descname">__module__</tt><em class="property"> = 'symbol'</em><a class="headerlink" href="#symbol.Symbol.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symbol.Symbol.get_bbox">
+<tt class="descname">get_bbox</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.Symbol.get_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the bounding box parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bounding box</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">BBox</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.Symbol.get_center">
+<tt class="descname">get_center</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.Symbol.get_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the center of the symbol</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">center location</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">LOC</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.Symbol.get_label">
+<tt class="descname">get_label</tt><big>(</big><big>)</big><a class="headerlink" href="#symbol.Symbol.get_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the name of the symbol</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">label</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.Symbol.set_bbox">
+<tt class="descname">set_bbox</tt><big>(</big><em>center</em>, <em>rows</em>, <em>cols</em><big>)</big><a class="headerlink" href="#symbol.Symbol.set_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>set the bounding box for this symbol</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>center</strong> (<em>LOC</em>) &#8211; center location of the symbol</li>
+<li><strong>rows</strong> (<em>int</em>) &#8211; number of rows</li>
+<li><strong>cols</strong> (<em>int</em>) &#8211; number of columns</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbol.Symbol.set_label">
+<tt class="descname">set_label</tt><big>(</big><em>label</em><big>)</big><a class="headerlink" href="#symbol.Symbol.set_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>set the name of this symbol</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> (<em>string</em>) &#8211; label</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

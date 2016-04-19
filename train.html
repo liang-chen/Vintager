@@ -55,19 +55,57 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="training">
-<h1>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h1>
-<p>#.. automodule:: utils
-#    :members:
-#    :undoc-members:</p>
-<p>#.. automodule:: glob
-#    :members:
-#    :undoc-members:</p>
-<p>#.. automodule:: train
-#    :members:
-#    :undoc-members:
-#    :inherited-members:
-#    :show-inheritance:</p>
+  <div class="section" id="module-train">
+<span id="training"></span><h1>Training<a class="headerlink" href="#module-train" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="train.get_sub_im">
+<tt class="descclassname">train.</tt><tt class="descname">get_sub_im</tt><big>(</big><em>im</em>, <em>s</em><big>)</big><a class="headerlink" href="#train.get_sub_im" title="Permalink to this definition">¶</a></dt>
+<dd><p>crop subimage for a certain symbol <strong>s</strong> from the whole image <strong>im</strong>
+:param im: whole image
+:type im: cv2.image
+:param s: symbol
+:type s: Symbol
+:return: sub_im
+:rtype: cv2.image</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="train.is_in_loc_list">
+<tt class="descclassname">train.</tt><tt class="descname">is_in_loc_list</tt><big>(</big><em>loc</em>, <em>ll</em><big>)</big><a class="headerlink" href="#train.is_in_loc_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="train.prepare_background_data">
+<tt class="descclassname">train.</tt><tt class="descname">prepare_background_data</tt><big>(</big><em>im</em>, <em>locs</em><big>)</big><a class="headerlink" href="#train.prepare_background_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="train.prepare_data_from_annotation">
+<tt class="descclassname">train.</tt><tt class="descname">prepare_data_from_annotation</tt><big>(</big><em>im</em>, <em>annotations</em><big>)</big><a class="headerlink" href="#train.prepare_data_from_annotation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="train.read_annotations">
+<tt class="descclassname">train.</tt><tt class="descname">read_annotations</tt><big>(</big><em>annotation_file_path</em><big>)</big><a class="headerlink" href="#train.read_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annotation_file_path</strong> (<em>string</em>) &#8211; path to annotation file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">annotations</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict[label: [locations]]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="train.training">
+<tt class="descclassname">train.</tt><tt class="descname">training</tt><big>(</big><em>img_file_path</em>, <em>annotation_file_path</em>, <em>detector_name</em><big>)</big><a class="headerlink" href="#train.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 

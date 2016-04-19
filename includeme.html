@@ -55,8 +55,36 @@
             
   <div class="section" id="vintager-homepage">
 <h1>Vintager Homepage<a class="headerlink" href="#vintager-homepage" title="Permalink to this headline">¶</a></h1>
-<p><strong>Vintager</strong> is designed to integrate crowdsourcing annotation and automatic object detection
-for <strong>Optical Music Recogntion</strong>.</p>
+<p><strong>Vintager</strong> (Python) is designed to combine crowdsourcing annotation and automatic object detection
+for <strong>Optical Music Recogntion</strong>. We provide utilities to transform printed music scores (in pdf format) to
+gray-level image with constant spatium (staff height = 30), detect various types of music symbols and display
+their associated bounding boxes. The detected symbols will also be saved into a database which will then be fed
+into web-based application for the users to verify. User-labeled symbols will, in return, be used by <strong>Vintager</strong> to
+re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
+music symbol dataset at the same time.</p>
+<p>Symbol Classes of interest: bar line, solid note head, open note head, whole note, flat, sharp, natural, treble clef,
+alto clef, bass clef.</p>
+<p>Symbol Detectors:
+1, pixel features + linear svm
+2, HOG features + linear svm
+3, Convolutional Neural Network</p>
+<p>Annotation format:
+Each symbol is associated with a bounding box of a constant size.
+Annotation file contains a list of symbols, each having one name and its center location.
+symbolAnnotator class reads annotation files, convert
+the annotation into symbol objects and display them on the image.</p>
+<p>Todo: evaluation, database</p>
+</div>
+<div class="section" id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
+<p>Python2.7</p>
+<p>OpenCV</p>
+<p>TensorFlow</p>
+<p>Scikit-learn</p>
+</div>
+<div class="section" id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://liang-chen.github.io/Vintager">link</a></p>
 </div>
 
 
@@ -65,6 +93,13 @@ for <strong>Optical Music Recogntion</strong>.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Vintager Homepage</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#api-documentation">API Documentation</a></li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to Vintager&#8217;s documentation!</a></p>

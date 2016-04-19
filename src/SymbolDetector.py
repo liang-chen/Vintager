@@ -7,7 +7,7 @@
 import cv2
 import numpy as np
 from sklearn.externals import joblib
-from glob import *
+from globv import *
 #from utils import create_symbol
 from feature import hog, pixel_vec
 

@@ -5,11 +5,12 @@ for **Optical Music Recogntion**.
 
 Requirements
 ============
-.. _Python2.7
-.. _OpenCV
-.. _TensorFlow
-.. _Scikit-learn
+Python2.7
+OpenCV
+TensorFlow
+Scikit-learn
 
 API Documentation
 =================
-link<http://liang-chen.github.io/Vintager/>
+`link`_
+.. link: http://liang-chen.github.io/Vintager

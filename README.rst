@@ -1,7 +1,28 @@
 Vintager Homepage
 =================
 **Vintager** (Python) is designed to integrate crowdsourcing annotation and automatic object detection
-for **Optical Music Recogntion**.
+for **Optical Music Recogntion**. We provide utilities to transform printed music scores (in pdf format) to
+gray-level image with constant spatium (staff height = 30), detect various types of music symbols and display
+the associated bounding boxes along with the detected symbols. The output will be saved into database and then fed
+into web-based application for the users to verify. User-labeled symbols will, in return, be used by **Vintager** to
+retrain the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
+music symbol dataset at the same time.
+
+Symbol Classes of interest: bar line, solid note head, open note head, whole note, flat, sharp, natural, treble clef,
+alto clef, bass clef.
+
+Symbol Detectors:
+1, pixel features + linear svm
+2, HOG features + linear svm
+3, Convolutional Neural Network
+
+Annotation format:
+Each symbol is associated with a bounding box of a constant size.
+Annotation file contains a list of symbols, each having one name and its center location.
+symbolAnnotator class reads annotation files, convert
+the annotation into symbol objects and display them on the image.
+
+Todo: evaluation, database
 
 Requirements
 ============

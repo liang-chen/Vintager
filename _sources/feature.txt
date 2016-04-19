@@ -1,0 +1,6 @@
+Feature Extraction
+==================
+
+.. automodule:: feature
+    :members:
+    :undoc-members:

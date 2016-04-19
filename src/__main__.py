@@ -5,7 +5,7 @@ from pdfReader import PdfReader
 from symbolDetector import SymbolDetector, DetectorOption
 from symbolAnnotator import SymbolAnnotator
 from train import training, read_annotations
-from glob import symbol_label_parms
+from globv import symbol_label_parms
 
 if "__main__" == __name__:
 

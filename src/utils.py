@@ -1,11 +1,23 @@
 
-# utilities
+"""
+Utilities
+"""
 
-from glob import symbol_label_parms
-from symbol import Symbol, BBox
+from globv import symbol_label_parms
+from symbol import Symbol
 
 
 def create_symbol(label, loc):
+    """
+    Create a symbol object with its label and location (center)
+
+    :param label: name of the symbol
+    :type label: string
+    :param loc: center location of the symbol
+    :type loc: LOC
+    :return: sym
+    :rtype: Symbol
+    """
     if label not in symbol_label_parms.keys():
         return None
 

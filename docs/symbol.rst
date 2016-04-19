@@ -1,9 +1,6 @@
 Symbol
 ======
 
-.. automodule::symbol
-    :members:
-
 .. autoclass:: symbol.LOC
    :members:
 

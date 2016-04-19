@@ -1,20 +1,31 @@
 
-# convert pdf to jpeg image
-# dependent on ImageMagick and its wand binding
+"""
+PDF Reader
+read multi-page PDF and convert each page into gray-level image
+save each page as a cv2.image object
+"""
 
-# from wand.image import Image
-# from wand.display import display
-import sys
 import cv2
 
-
 class PdfReader:
+    """
+    PdfReader Class
+    read score in pdf format and convert pages into cv2.image
+    """
     def __init__(self, path):
+        """
+        Initialize PdfReader object with PDF file path
+
+        :param path: path to PDF file
+        :type path: string
+        """
         self.path = path
         self.images = []
 
     def read(self):
-
+        """
+        Read PDF and perform PDF to image conversion, save each page as cv2.image into self.images list
+        """
         # with Image(filename = self.path, resolution=180) as img:
         #    self.image = img
         #    print "image width = ", img.width

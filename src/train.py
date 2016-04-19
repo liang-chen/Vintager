@@ -4,7 +4,7 @@
 import cv2
 import numpy as np
 import random
-from glob import *
+from globv import *
 from symbol import Symbol, LOC, BBox
 from sklearn.svm import SVC
 from sklearn.externals import joblib

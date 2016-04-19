@@ -1,12 +1,25 @@
 
-# feature extraction
+"""
+Feature Extraction Module
+
+Given a gray-level image, extract feature vectors using different approaches:
+
+1) vectorize pixels
+2) extract Histogram of Oriented Gradients(HOG)
+"""
 
 import cv2
 import numpy as np
 
 
 def hog(img):
+    """
 
+    :param img: input image
+    :type img: cv2.image
+    :return: hist: output feature vector
+    :rtype: numpy.array(1, 64)
+    """
     #hijacking hog with pixel features for now
     feature = np.squeeze(img.reshape(-1, img.size) / 256.0)  # using pixel features
     return feature
@@ -26,5 +39,12 @@ def hog(img):
 
 
 def pixel_vec(img):
+    """
+
+    :param img: input image
+    :type img: cv2.image
+    :return: feature: output feature vector
+    :rtype: numpy.array(1,img.size)
+    """
     feature = np.squeeze(img.reshape(-1, img.size)/256.0) # using pixel features
     return feature

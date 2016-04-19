@@ -38,7 +38,7 @@ class SymbolDetector:
         tot_rows, tot_cols = im.shape[:2]
         [rows, cols] = symbol_label_parms[label]
         detected = []
-        step_size = 2
+        step_size = 20
         for i in range(0, tot_rows - rows, step_size):
             for j in range(0, tot_cols - cols, step_size):
                 sub_im = im[i:i+rows, j:j+cols]

@@ -57,37 +57,108 @@
             
   <div class="section" id="module-train">
 <span id="training"></span><h1>Training<a class="headerlink" href="#module-train" title="Permalink to this headline">¶</a></h1>
+<p>Training symbol detectors via Linear SVM</p>
 <dl class="function">
 <dt id="train.get_sub_im">
 <tt class="descclassname">train.</tt><tt class="descname">get_sub_im</tt><big>(</big><em>im</em>, <em>s</em><big>)</big><a class="headerlink" href="#train.get_sub_im" title="Permalink to this definition">¶</a></dt>
-<dd><p>crop subimage for a certain symbol <strong>s</strong> from the whole image <strong>im</strong>
-:param im: whole image
-:type im: cv2.image
-:param s: symbol
-:type s: Symbol
-:return: sub_im
-:rtype: cv2.image</p>
+<dd><p>Crop subimage for a certain symbol <strong>s</strong> from the whole image <strong>im</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>im</strong> (<em>cv2.image</em>) &#8211; whole image</li>
+<li><strong>s</strong> (<em>Symbol</em>) &#8211; symbol</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sub_im</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">cv2.image</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="train.is_in_loc_list">
 <tt class="descclassname">train.</tt><tt class="descname">is_in_loc_list</tt><big>(</big><em>loc</em>, <em>ll</em><big>)</big><a class="headerlink" href="#train.is_in_loc_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Determine whether a location is in a location list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>loc</strong> (<em>LOC</em>) &#8211; target location</li>
+<li><strong>ll</strong> (<em>[LOC]</em>) &#8211; location list</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True or False</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="train.prepare_background_data">
 <tt class="descclassname">train.</tt><tt class="descname">prepare_background_data</tt><big>(</big><em>im</em>, <em>locs</em><big>)</big><a class="headerlink" href="#train.prepare_background_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Crop subimages to prepare background data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>im</strong> (<em>cv2.image</em>) &#8211; whole image</li>
+<li><strong>locs</strong> (<em>[LOC]</em>) &#8211; locations for the annotated symbols</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">[background imgs], [background labels]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">[cv2.image], [string]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="train.prepare_data_from_annotation">
 <tt class="descclassname">train.</tt><tt class="descname">prepare_data_from_annotation</tt><big>(</big><em>im</em>, <em>annotations</em><big>)</big><a class="headerlink" href="#train.prepare_data_from_annotation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Crop subimages for annotated symbols</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>im</strong> (<em>cv2.image</em>) &#8211; whole image</li>
+<li><strong>annotations</strong> (<em>dict{label: [LOC]}</em>) &#8211; annotation dict</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">[symbol images], [symbol labels]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">[cv2.image], [string]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="function">
 <dt id="train.read_annotations">
 <tt class="descclassname">train.</tt><tt class="descname">read_annotations</tt><big>(</big><em>annotation_file_path</em><big>)</big><a class="headerlink" href="#train.read_annotations" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Read annotations given the annotation file path.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -95,7 +166,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">annotations</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict[label: [locations]]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict{label: [locations]}</td>
 </tr>
 </tbody>
 </table>
@@ -104,7 +175,23 @@
 <dl class="function">
 <dt id="train.training">
 <tt class="descclassname">train.</tt><tt class="descname">training</tt><big>(</big><em>img_file_path</em>, <em>annotation_file_path</em>, <em>detector_name</em><big>)</big><a class="headerlink" href="#train.training" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Train SVM classifier given symbol annotations and feature extractor
+SVM parameters: kernel=&#8217;linear&#8217;, C=2.67, decision_function_shape= &#8220;ovo&#8221;
+trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the feature extraction method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>img_file_path</strong> (<em>string</em>) &#8211; path to score image</li>
+<li><strong>annotation_file_path</strong> (<em>string</em>) &#8211; path to annotations</li>
+<li><strong>detector_name</strong> (<em>string</em>) &#8211; &#8220;hog&#8221; or &#8220;pixel&#8221; &#8211; two types of features</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 

@@ -1,5 +1,7 @@
 
-# script for symbol training
+"""
+Training symbol detectors via Linear SVM
+"""
 
 import cv2
 import numpy as np
@@ -14,14 +16,13 @@ from feature import hog, pixel_vec
 
 def read_annotations(annotation_file_path):
     """
+    Read annotations given the annotation file path.
 
     :param annotation_file_path: path to annotation file
     :type annotation_file_path: string
     :return: annotations
-    :rtype: dict[label: [locations]]
+    :rtype: dict{label: [locations]}
     """
-
-
     annotations = {}
 
     try:
@@ -44,7 +45,8 @@ def read_annotations(annotation_file_path):
 
 def get_sub_im(im, s):
     """
-    crop subimage for a certain symbol **s** from the whole image **im**
+    Crop subimage for a certain symbol **s** from the whole image **im**
+
     :param im: whole image
     :type im: cv2.image
     :param s: symbol
@@ -70,6 +72,16 @@ def get_sub_im(im, s):
 
 
 def is_in_loc_list(loc, ll):
+    """
+    Determine whether a location is in a location list
+
+    :param loc: target location
+    :type loc: LOC
+    :param ll: location list
+    :type ll: [LOC]
+    :return: True or False
+    :rtype: Boolean
+    """
     list = [[l.get_x(), l.get_y()] for l in ll]
     if [loc.get_x(), loc.get_y()] in list:
         return True
@@ -78,6 +90,16 @@ def is_in_loc_list(loc, ll):
 
 
 def prepare_background_data(im, locs):
+    """
+    Crop subimages to prepare background data
+
+    :param im: whole image
+    :type im: cv2.image
+    :param locs: locations for the annotated symbols
+    :type locs: [LOC]
+    :return: [background imgs], [background labels]
+    :rtype: [cv2.image], [string]
+    """
     (rows, cols) = im.shape
     num = 0
     tot_neg_num = 1000
@@ -101,6 +123,16 @@ def prepare_background_data(im, locs):
 
 
 def prepare_data_from_annotation(im, annotations):
+    """
+    Crop subimages for annotated symbols
+
+    :param im: whole image
+    :type im: cv2.image
+    :param annotations: annotation dict
+    :type annotations: dict{label: [LOC]}
+    :return: [symbol images], [symbol labels]
+    :rtype: [cv2.image], [string]
+    """
 
     data = []
     labels = []
@@ -128,6 +160,18 @@ def prepare_data_from_annotation(im, annotations):
 
 
 def training(img_file_path, annotation_file_path, detector_name):
+    """
+    Train SVM classifier given symbol annotations and feature extractor.
+    SVM parameters: kernel='linear', C=2.67, decision_function_shape= "ovo".
+    Trained model will be saved as "../models/?_svm.pkl", ? is the feature extraction method.
+
+    :param img_file_path: path to score image
+    :type img_file_path: string
+    :param annotation_file_path: path to annotations
+    :type annotation_file_path: string
+    :param detector_name: "hog" or "pixel" -- two types of features
+    :type detector_name: string
+    """
     im = cv2.imread(img_file_path, 0)
     annotations = read_annotations(annotation_file_path)
     img_data, labels = prepare_data_from_annotation(im, annotations)

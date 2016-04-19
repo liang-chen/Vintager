@@ -24,7 +24,10 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" /> 
+    <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" />
+    <link rel="up" title="API Documentation" href="API.html" />
+    <link rel="next" title="Utilities" href="utilities.html" />
+    <link rel="prev" title="Feature Extraction" href="feature.html" /> 
   </head>
   <body>
     <div class="related">
@@ -33,7 +36,17 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="feature.html" title="Feature Extraction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -44,6 +57,27 @@
             
   <div class="section" id="training">
 <h1>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-glob"></span><p>Filename globbing utility.</p>
+<dl class="function">
+<dt id="glob.glob">
+<tt class="descclassname">glob.</tt><tt class="descname">glob</tt><big>(</big><em>pathname</em><big>)</big><a class="headerlink" href="#glob.glob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of paths matching a pathname pattern.</p>
+<p>The pattern may contain simple shell-style wildcards a la
+fnmatch. However, unlike fnmatch, filenames starting with a
+dot are special cases that are not matched by &#8216;*&#8217; and &#8216;?&#8217;
+patterns.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="glob.iglob">
+<tt class="descclassname">glob.</tt><tt class="descname">iglob</tt><big>(</big><em>pathname</em><big>)</big><a class="headerlink" href="#glob.iglob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator which yields the paths matching a pathname pattern.</p>
+<p>The pattern may contain simple shell-style wildcards a la
+fnmatch. However, unlike fnmatch, filenames starting with a
+dot are special cases that are not matched by &#8216;*&#8217; and &#8216;?&#8217;
+patterns.</p>
+</dd></dl>
+
 </div>
 
 
@@ -52,6 +86,12 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="feature.html"
+                        title="previous chapter">Feature Extraction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">Utilities</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/train.txt"
@@ -80,7 +120,17 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="feature.html" title="Feature Extraction"
+             >previous</a> |</li>
+        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li><a href="API.html" >API Documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

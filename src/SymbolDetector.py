@@ -1,14 +1,15 @@
 
-# detect various types of music symbols via different detectors
-# 1, Pixel + Multiclass-SVM
-# 2, HOG + Muticlass-SVM
-# 3, Convolutional Neural Network
+"""
+Detect music symbols via different detectors
+1, Pixel + Multiclass-SVM
+2, HOG + Muticlass-SVM
+3, Convolutional Neural Network
+"""
 
 import cv2
 import numpy as np
 from sklearn.externals import joblib
 from globv import *
-#from utils import create_symbol
 from feature import hog, pixel_vec
 
 

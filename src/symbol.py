@@ -13,8 +13,8 @@ class LOC:
         :param y: y-coordinate
         :type y: int
         """
-        self.__x__ = int(x)
-        self.__y__ = int(y)
+        self._x = int(x)
+        self._y = int(y)
 
     def get_x(self):
         """
@@ -22,7 +22,7 @@ class LOC:
         :return: x-coordinate
         :rtype: int
         """
-        return self.__x__
+        return self._x
 
     def get_y(self):
         """
@@ -30,7 +30,7 @@ class LOC:
         :return: y-coordinate
         :rtype: int
         """
-        return self.__y__
+        return self._y
 
     def set_x(self, x):
         """
@@ -39,7 +39,7 @@ class LOC:
         :param x: new x-coordinate
         :type x: int
         """
-        self.__x__ = int(x)
+        self._x = int(x)
 
     def set_y(self, y):
         """
@@ -48,7 +48,7 @@ class LOC:
         :param y: new y-coordinate
         :type y: int
         """
-        self.__y__ = int(y)
+        self._y = int(y)
 
     def copy(self):
         """
@@ -57,7 +57,7 @@ class LOC:
         :return: loc
         :rtype: LOC
         """
-        loc = LOC(self.__x__, self.__y__)
+        loc = LOC(self._x, self._y)
         return loc
 
 
@@ -76,9 +76,9 @@ class BBox:
         :param cols: number of columns
         :type cols: int
         """
-        self.__loc__ = loc
-        self.__rows__ = int(rows)
-        self.__cols__ = int(cols)
+        self._loc = loc
+        self._rows = int(rows)
+        self._cols = int(cols)
 
     def get_loc(self):
         """
@@ -94,7 +94,7 @@ class BBox:
         :return: number of rows
         :rtype: int
         """
-        return self.__rows__
+        return self._rows
 
     def get_cols(self):
         """
@@ -102,7 +102,7 @@ class BBox:
         :return: number of columns
         :rtype: int
         """
-        return self.__cols__
+        return self._cols
 
     def set_loc(self, loc):
         """
@@ -113,7 +113,7 @@ class BBox:
         """
         if not isinstance(loc, LOC):
             raise TypeError("%s attribute must be set to an instance of %s" % ("loc", "LOC"))
-        self.__loc__ = loc
+        self._loc = loc
 
     def set_rows(self, rows):
         """
@@ -122,7 +122,7 @@ class BBox:
         :param rows: new number of rows
         :type rows: int
         """
-        self.__rows__ = int(rows)
+        self._rows = int(rows)
 
     def set_cols(self, cols):
         """
@@ -131,7 +131,7 @@ class BBox:
         :param cols: new number of columns
         :type cols: int
         """
-        self.__cols__ = int(cols)
+        self._cols = int(cols)
 
 
 class Symbol:
@@ -147,8 +147,8 @@ class Symbol:
         :param bbox: bounding box of the symbol
         :type bbox: BBox
         """
-        self.__label__ = label
-        self.__bbox__ = bbox
+        self._label = label
+        self._bbox = bbox
 
     def get_bbox(self):
         """
@@ -157,7 +157,7 @@ class Symbol:
         :return: bounding box
         :rtype: BBox
         """
-        return self.__bbox__
+        return self._bbox
 
     def get_label(self):
         """
@@ -166,7 +166,7 @@ class Symbol:
         :return: label
         :rtype: string
         """
-        return self.__label__
+        return self._label
 
     def get_center(self):
         """
@@ -175,9 +175,9 @@ class Symbol:
         :return: center location
         :rtype: LOC
         """
-        loc = self.__bbox__.loc.copy()
-        loc.set_x(loc.get_x() + self.__bbox__.cols*0.5)
-        loc.set_y(loc.get_y() + self.__bbox__.rows * 0.5)
+        loc = self._bbox.get_loc().copy()
+        loc.set_x(loc.get_x() + self._bbox.cols*0.5)
+        loc.set_y(loc.get_y() + self._bbox.rows * 0.5)
         return loc
 
     def set_bbox(self, center, rows, cols):
@@ -192,12 +192,12 @@ class Symbol:
         :type cols: int
         """
         loc = LOC(center.get_x() - cols*0.5, center.get_y() - rows*0.5)
-        if self.__bbox__ is None:
-            self.__bbox__ = BBox(loc, rows, cols)
+        if self._bbox is None:
+            self._bbox = BBox(loc, rows, cols)
         else:
-            self.__bbox__.set_loc(loc)
-            self.__bbox__.set_rows(rows)
-            self.__bbox__.set_cols(cols)
+            self._bbox.set_loc(loc)
+            self._bbox.set_rows(rows)
+            self._bbox.set_cols(cols)
 
     def set_label(self, label):
         """
@@ -206,4 +206,4 @@ class Symbol:
         :param label: label
         :type label: string
         """
-        self.__label__ = label
+        self._label = label

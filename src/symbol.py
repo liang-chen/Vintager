@@ -86,7 +86,7 @@ class BBox:
         :return: the upper left corner of this bounding box
         :rtype: LOC
         """
-        return self.__loc__
+        return self._loc
 
     def get_rows(self):
         """
@@ -176,8 +176,8 @@ class Symbol:
         :rtype: LOC
         """
         loc = self._bbox.get_loc().copy()
-        loc.set_x(loc.get_x() + self._bbox.cols*0.5)
-        loc.set_y(loc.get_y() + self._bbox.rows * 0.5)
+        loc.set_x(loc.get_x() + self._bbox.get_cols()*0.5)
+        loc.set_y(loc.get_y() + self._bbox.get_rows() * 0.5)
         return loc
 
     def set_bbox(self, center, rows, cols):

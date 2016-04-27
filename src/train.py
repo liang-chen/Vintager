@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 import random
 from globv import *
-from symbol import Symbol, LOC, BBox
+from symbol import Symbol, LOC
 from sklearn.svm import SVC
 from sklearn.externals import joblib
 from utils import create_symbol

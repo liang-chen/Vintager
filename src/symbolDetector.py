@@ -16,15 +16,40 @@ from symbol import LOC, Symbol
 
 
 class DetectorOption:
+    """
+    Detector Option Class
+    """
     def __init__(self, name):
+        """
+        Initialize a detector option instance
+
+        :param name: name of the detector
+        :type name: string
+        """
         self.__name__ = name
 
     def name(self):
+        """
+        Get the name of detector
+
+        :return: name of the detector
+        :rtype: string
+        """
         return self.__name__
 
 
 class SymbolDetector:
+    """
+    Symbol Detector Class
+    """
+
     def __init__(self, option):
+        """
+        Initialize a symbol detector
+
+        :param option: input detector option
+        :type option: DetectorOption()
+        """
         try:
             model_dir = '../models/'
             self.model = joblib.load(model_dir + option.name() + '.pkl')
@@ -38,6 +63,16 @@ class SymbolDetector:
             print Exception
 
     def detect(self, im, label, mode):
+        """
+        Detect a certain symbol (given by the label) on the image
+
+        :param im: input image
+        :type im: cv2.image
+        :param label: target symbol label
+        :type label: string
+        :param mode: interatively show the result or not
+        :type mode: string
+        """
         tot_rows, tot_cols = im.shape[:2]
         [rows, cols] = symbol_label_parms[label]
         detected = []
@@ -67,6 +102,14 @@ class SymbolDetector:
             raise Exception
 
     def detect_all(self, im, mode):
+        """
+        Detect all the labels on the target image
+
+        :param im: input image
+        :type im: cv2.image
+        :param mode: interactively show the results or not
+        :type mode: string
+        """
         tot_rows, tot_cols = im.shape[:2]
         detected = []
         step_size = 2

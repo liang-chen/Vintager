@@ -11,6 +11,8 @@ import numpy as np
 from sklearn.externals import joblib
 from globv import *
 from feature import hog, pixel_vec
+from utils import create_symbol_with_upper_left_corner, get_sub_im
+from symbol import LOC, Symbol
 
 
 class DetectorOption:
@@ -42,8 +44,9 @@ class SymbolDetector:
         step_size = 20
         for i in range(0, tot_rows - rows, step_size):
             for j in range(0, tot_cols - cols, step_size):
-                sub_im = im[i:i+rows, j:j+cols]
-                sub_im = cv2.resize(sub_im, uni_size)
+                loc = LOC(i,j)
+                sym = create_symbol_with_upper_left_corner(label, loc)
+                sub_im = get_sub_im(im, sym)
                 feature = self.extractor(sub_im)
                 feature = feature.reshape(-1,feature.size)
                 if self.model.predict(feature) == label:
@@ -74,8 +77,9 @@ class SymbolDetector:
                     [rows, cols] = symbol_label_parms[label]
                     if i + rows >= tot_rows or j + cols >= tot_cols:
                         continue
-                    sub_im = im[i:i + rows, j:j + cols]
-                    sub_im = cv2.resize(sub_im, uni_size)
+                    loc = LOC(i, j)
+                    sym = create_symbol_with_upper_left_corner(label, loc)
+                    sub_im = get_sub_im(im, sym)
                     feature = self.extractor(sub_im)
                     feature = feature.reshape(-1, feature.size)
                     if self.model.predict(feature) == label:

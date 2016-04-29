@@ -10,7 +10,11 @@ Given a gray-level image, extract feature vectors using different approaches:
 
 import cv2
 import numpy as np
+from globv import uni_size
 
+
+def unify_img_size(img):
+    return cv2.resize(img, uni_size)
 
 def hog(img):
     """

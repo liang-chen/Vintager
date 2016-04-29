@@ -6,11 +6,11 @@ Training symbol detectors via Linear SVM
 import cv2
 import numpy as np
 import random
-from globv import *
-from symbol import Symbol, LOC
+#from globv import *
+from symbol import LOC
 from sklearn.svm import SVC
 from sklearn.externals import joblib
-from utils import create_symbol
+from utils import create_symbol_with_center_loc, get_sub_im
 from feature import hog, pixel_vec
 
 
@@ -41,34 +41,6 @@ def read_annotations(annotation_file_path):
         print "nothing"
 
     return annotations
-
-
-def get_sub_im(im, s):
-    """
-    Crop subimage for a certain symbol **s** from the whole image **im**
-
-    :param im: whole image
-    :type im: cv2.image
-    :param s: symbol
-    :type s: Symbol
-    :return: sub_im
-    :rtype: cv2.image
-    """
-
-    bbox = s.get_bbox()
-    (rows, cols) = im.shape
-    y = bbox.get_loc().get_y()
-    x = bbox.get_loc().get_x()
-    brows = bbox.get_rows()
-    bcols = bbox.get_cols()
-    if y < 0 or y >= rows or y + brows < 0 or y + brows >= rows:
-        return None
-    if x < 0 or x >= cols or x + bcols < 0 or x + bcols >= cols:
-        return None
-    sub_im = im[y:y + brows, x:x + bcols]
-    sub_im = cv2.resize(sub_im, uni_size)
-
-    return sub_im
 
 
 def is_in_loc_list(loc, ll):
@@ -111,7 +83,7 @@ def prepare_background_data(im, locs):
         x = random.randint(0, cols)
         l = LOC( x,y )
         if not is_in_loc_list(l, locs):
-            s = create_symbol("background", l)
+            s = create_symbol_with_center_loc("background", l)
             sub_im = get_sub_im(im, s)
 
             if sub_im is not None:
@@ -143,7 +115,7 @@ def prepare_data_from_annotation(im, annotations):
         for label in annotations.keys():
             locs = annotations[label]
             pos_locs = pos_locs + locs
-            sl = [create_symbol(label, loc) for loc in locs]
+            sl = [create_symbol_with_center_loc(label, loc) for loc in locs]
             symbols = symbols + sl
         data_label_pair = [(get_sub_im(im, s), s.get_label()) for s in symbols if s is not None]
         data = [d for (d,l) in data_label_pair if d is not None]

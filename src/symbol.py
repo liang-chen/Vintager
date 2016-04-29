@@ -180,7 +180,7 @@ class Symbol:
         loc.set_y(loc.get_y() + self._bbox.get_rows() * 0.5)
         return loc
 
-    def set_bbox(self, center, rows, cols):
+    def set_bbox_with_center(self, center, rows, cols):
         """
         set the bounding box for this symbol
 
@@ -192,6 +192,25 @@ class Symbol:
         :type cols: int
         """
         loc = LOC(center.get_x() - cols*0.5, center.get_y() - rows*0.5)
+        if self._bbox is None:
+            self._bbox = BBox(loc, rows, cols)
+        else:
+            self._bbox.set_loc(loc)
+            self._bbox.set_rows(rows)
+            self._bbox.set_cols(cols)
+
+    def set_bbox_with_upper_left_corner(self, upper_left, rows, cols):
+        """
+        set the bounding box for this symbol
+
+        :param center: center location of the symbol
+        :type center: LOC
+        :param rows: number of rows
+        :type rows: int
+        :param cols: number of columns
+        :type cols: int
+        """
+        loc = LOC(upper_left.get_x(), upper_left.get_y())
         if self._bbox is None:
             self._bbox = BBox(loc, rows, cols)
         else:

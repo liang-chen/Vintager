@@ -33,7 +33,7 @@ except Exception:
 ####detect symbols on test data
 option = DetectorOption("hog_svm")
 sd = SymbolDetector(option)
-sd.detect_all(pr.images[0][1:300, 1:300], "show")
-# sd.detect(pr.images[0][1:500,1:500], "treble_clef", "show")
+#sd.detect_all(pr.images[0][1:300, 1:300], "show")
+sd.detect(pr.images[0][1:500,1:500], "flat", "show")
 # for label in symbol_label_parms.keys():
-#   sd.detect(pr.images[0], label, "show")
+#   sd.detect(pr.images[0], label, "show"

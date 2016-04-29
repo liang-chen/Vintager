@@ -1,23 +1,46 @@
 
-# annotate symbols with boundingboxes
+"""
+Symbol Annotator
+Display annotations from annotation file
+"""
 
 import cv2
 from utils import create_symbol_with_center_loc
 
 
 class SymbolAnnotator:
+    """
+    Symbol Annotator Class
+    """
     def __init__(self,im,annotations):
+        """
+        Initialize a symbol annotator
+
+        :param im: input image
+        :type im: cv2.image
+        :param annotations: annotations read by train.read_annotations
+        :type annotations: dict containing symbol annotations
+        """
         self.__symbols__ = []
-        self.load_symbols(annotations)
+        self.load_annotations(annotations)
         self.__image__ = im
 
-    def load_symbols(self, annotations):
+    def load_annotations(self, annotations):
+        """
+        Load symbols from annotations
+
+        :param annotations: annotations read by train.read_annotations
+        :type annotations: dict containing symbol annotations
+        """
         for label in annotations.keys():
             locs = annotations[label]
             sl = [create_symbol_with_center_loc(label, loc) for loc in locs]
             self.__symbols__ += [s for s in sl if s is not None]
 
     def display(self):
+        """
+        Display annotations on the image
+        """
         img = cv2.cvtColor(self.__image__, cv2.COLOR_GRAY2RGB)
         font = cv2.FONT_HERSHEY_SIMPLEX
         for s in self.__symbols__:

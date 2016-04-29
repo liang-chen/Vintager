@@ -12,16 +12,16 @@ anno_dir = '../annotations/'
 #training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
 
 ####display annotations
-# pr = PdfReader(data_dir + "train.pdf")
-# try:
-#     pr.read()
-# except Exception:
-#     print Exception
-# annotations = read_annotations(anno_dir + "train.ant")
-# sa = SymbolAnnotator(pr.images[0], annotations)
-# sa.display()
+pr = PdfReader(data_dir + "train.pdf")
+try:
+    pr.read()
+except Exception:
+    print Exception
+annotations = read_annotations(anno_dir + "train.ant")
+sa = SymbolAnnotator(pr.images[0], annotations)
+sa.display()
 #
-# exit(0)
+exit(0)
 
 ####read pdf (test data)
 pr = PdfReader(data_dir + "test.pdf")
@@ -36,4 +36,4 @@ sd = SymbolDetector(option)
 #sd.detect_all(pr.images[0][1:300, 1:300], "show")
 sd.detect(pr.images[0][1:500,1:500], "flat", "show")
 # for label in symbol_label_parms.keys():
-#   sd.detect(pr.images[0], label, "show"
+# sd.detect(pr.images[0], label, "show"

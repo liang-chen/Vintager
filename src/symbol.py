@@ -8,9 +8,9 @@ class LOC:
     def __init__(self, x, y):
         """
 
-        :param x: x-coordinate
+        :param x: x-coordinate (row)
         :type x: int
-        :param y: y-coordinate
+        :param y: y-coordinate (col)
         :type y: int
         """
         self._x = int(x)

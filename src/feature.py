@@ -21,6 +21,7 @@ def unify_img_size(img):
     :return: image with a uniform size
     :rtype: cv2.image
     """
+
     return cv2.resize(img, uni_size)
 
 
@@ -35,8 +36,11 @@ def hog(img):
 
     u_img = unify_img_size(img)
     hog = cv2.HOGDescriptor("../models/hog.xml")
+    #cv2.imshow("haha", u_img)
+    #cv2.waitKey(0)
+
     feature = hog.compute(u_img)
-    return feature
+    return np.squeeze(feature.reshape(-1, len(feature)))
 
 
 def pixel_vec(img):
@@ -49,5 +53,5 @@ def pixel_vec(img):
     """
 
     u_img = unify_img_size(img)
-    feature = np.squeeze(img.reshape(-1, img.size)/256.0) # using pixel features
+    feature = np.squeeze(u_img.reshape(-1, img.size)/256.0) # using pixel features
     return feature

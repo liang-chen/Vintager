@@ -9,7 +9,7 @@ data_dir = '../data/'
 anno_dir = '../annotations/'
 
 ####training
-# training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
+#training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
 
 ####display annotations
 # pr = PdfReader(data_dir + "train.pdf")

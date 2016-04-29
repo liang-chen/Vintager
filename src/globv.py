@@ -37,5 +37,6 @@ default_symbol_cols = int(3*space_unit)
 uni_feature_len = int(ceil(40*space_unit*space_unit))
 
 #: Rescale sub-image to this unified size for feature extraction or classification.
-uni_size = (int(5*space_unit), int(5*space_unit))
+#uni_size = (int(5*space_unit), int(5*space_unit))
+uni_size = (64, 64)
 

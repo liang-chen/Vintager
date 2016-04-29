@@ -1,8 +1,8 @@
 
 """
 Detect music symbols via different detectors
-1, Pixel + Multiclass-SVM
-2, HOG + Muticlass-SVM
+1, Pixel + Multiclass Linear SVM
+2, HOG + Muticlass Linear SVM
 3, Convolutional Neural Network
 """
 
@@ -44,7 +44,7 @@ class SymbolDetector:
         step_size = 20
         for i in range(0, tot_rows - rows, step_size):
             for j in range(0, tot_cols - cols, step_size):
-                loc = LOC(i,j)
+                loc = LOC(j,i)
                 sym = create_symbol_with_upper_left_corner(label, loc)
                 sub_im = get_sub_im(im, sym)
                 feature = self.extractor(sub_im)
@@ -77,9 +77,10 @@ class SymbolDetector:
                     [rows, cols] = symbol_label_parms[label]
                     if i + rows >= tot_rows or j + cols >= tot_cols:
                         continue
-                    loc = LOC(i, j)
+                    loc = LOC(j, i)
                     sym = create_symbol_with_upper_left_corner(label, loc)
                     sub_im = get_sub_im(im, sym)
+
                     feature = self.extractor(sub_im)
                     feature = feature.reshape(-1, feature.size)
                     if self.model.predict(feature) == label:

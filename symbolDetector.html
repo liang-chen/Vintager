@@ -57,6 +57,68 @@
             
   <div class="section" id="symbol-detector">
 <h1>Symbol Detector<a class="headerlink" href="#symbol-detector" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="symbolDetector.SymbolDetector">
+<em class="property">class </em><code class="descclassname">symbolDetector.</code><code class="descname">SymbolDetector</code><span class="sig-paren">(</span><em>option</em><span class="sig-paren">)</span><a class="headerlink" href="#symbolDetector.SymbolDetector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Symbol Detector Class</p>
+<dl class="method">
+<dt id="symbolDetector.SymbolDetector.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>option</em><span class="sig-paren">)</span><a class="headerlink" href="#symbolDetector.SymbolDetector.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a symbol detector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>option</strong> (<em>DetectorOption()</em>) &#8211; input detector option</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="symbolDetector.SymbolDetector.__module__">
+<code class="descname">__module__</code><em class="property"> = 'symbolDetector'</em><a class="headerlink" href="#symbolDetector.SymbolDetector.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="symbolDetector.SymbolDetector.detect">
+<code class="descname">detect</code><span class="sig-paren">(</span><em>im</em>, <em>label</em>, <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#symbolDetector.SymbolDetector.detect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect a certain symbol (given by the label) on the image</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>im</strong> (<em>cv2.image</em>) &#8211; input image</li>
+<li><strong>label</strong> (<em>string</em>) &#8211; target symbol label</li>
+<li><strong>mode</strong> (<em>string</em>) &#8211; interatively show the result or not</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="symbolDetector.SymbolDetector.detect_all">
+<code class="descname">detect_all</code><span class="sig-paren">(</span><em>im</em>, <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#symbolDetector.SymbolDetector.detect_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect all the labels on the target image</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>im</strong> (<em>cv2.image</em>) &#8211; input image</li>
+<li><strong>mode</strong> (<em>string</em>) &#8211; interactively show the results or not</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

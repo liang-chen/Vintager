@@ -8,7 +8,7 @@
     
     <title>Global Variables &mdash; Vintager 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,14 +23,14 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" />
     <link rel="up" title="API Documentation" href="API.html" />
     <link rel="next" title="Feature Extraction" href="feature.html" />
     <link rel="prev" title="Symbol Annotator" href="symbolAnnotator.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -45,57 +45,57 @@
         <li class="right" >
           <a href="symbolAnnotator.html" title="Symbol Annotator"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="global-variables">
 <h1>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h1>
 <dl class="data">
 <dt id="globv.staff_height">
-<tt class="descclassname">globv.</tt><tt class="descname">staff_height</tt><a class="headerlink" href="#globv.staff_height" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">staff_height</code><a class="headerlink" href="#globv.staff_height" title="Permalink to this definition">¶</a></dt>
 <dd><p>Height of a staff. Score needs to be rescaled according to this constant.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="globv.space_unit">
-<tt class="descclassname">globv.</tt><tt class="descname">space_unit</tt><a class="headerlink" href="#globv.space_unit" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">space_unit</code><a class="headerlink" href="#globv.space_unit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Space unit used to measure the size of bounding box.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="globv.symbol_label_parms">
-<tt class="descclassname">globv.</tt><tt class="descname">symbol_label_parms</tt><a class="headerlink" href="#globv.symbol_label_parms" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">symbol_label_parms</code><a class="headerlink" href="#globv.symbol_label_parms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary that takes symbol types and their corresponding bounding box sizes.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="globv.default_symbol_rows">
-<tt class="descclassname">globv.</tt><tt class="descname">default_symbol_rows</tt><a class="headerlink" href="#globv.default_symbol_rows" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">default_symbol_rows</code><a class="headerlink" href="#globv.default_symbol_rows" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use this number of rows if the symbol type if unknown.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="globv.default_symbol_cols">
-<tt class="descclassname">globv.</tt><tt class="descname">default_symbol_cols</tt><a class="headerlink" href="#globv.default_symbol_cols" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">default_symbol_cols</code><a class="headerlink" href="#globv.default_symbol_cols" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use this number of columns if the symbol type if unknown.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="globv.uni_feature_len">
-<tt class="descclassname">globv.</tt><tt class="descname">uni_feature_len</tt><a class="headerlink" href="#globv.uni_feature_len" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">uni_feature_len</code><a class="headerlink" href="#globv.uni_feature_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unified feature vector length.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="globv.uni_size">
-<tt class="descclassname">globv.</tt><tt class="descname">uni_size</tt><a class="headerlink" href="#globv.uni_size" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">globv.</code><code class="descname">uni_size</code><a class="headerlink" href="#globv.uni_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rescale sub-image to this unified size for feature extraction or classification.</p>
 </dd></dl>
 
@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="symbolAnnotator.html"
@@ -113,12 +113,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="feature.html"
                         title="next chapter">Feature Extraction</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/global.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/global.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -126,16 +128,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -150,13 +149,13 @@
         <li class="right" >
           <a href="symbolAnnotator.html" title="Symbol Annotator"
              >previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" >API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" >API Documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2016, Liang Chen.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

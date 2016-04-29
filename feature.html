@@ -8,7 +8,7 @@
     
     <title>Feature Extraction &mdash; Vintager 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,14 +23,14 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" />
     <link rel="up" title="API Documentation" href="API.html" />
     <link rel="next" title="Training" href="train.html" />
     <link rel="prev" title="Global Variables" href="global.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -45,15 +45,15 @@
         <li class="right" >
           <a href="global.html" title="Global Variables"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="module-feature">
 <span id="feature-extraction"></span><h1>Feature Extraction<a class="headerlink" href="#module-feature" title="Permalink to this headline">¶</a></h1>
@@ -65,7 +65,7 @@
 </ol>
 <dl class="function">
 <dt id="feature.hog">
-<tt class="descclassname">feature.</tt><tt class="descname">hog</tt><big>(</big><em>img</em><big>)</big><a class="headerlink" href="#feature.hog" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">feature.</code><code class="descname">hog</code><span class="sig-paren">(</span><em>img</em><span class="sig-paren">)</span><a class="headerlink" href="#feature.hog" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -82,7 +82,7 @@
 
 <dl class="function">
 <dt id="feature.pixel_vec">
-<tt class="descclassname">feature.</tt><tt class="descname">pixel_vec</tt><big>(</big><em>img</em><big>)</big><a class="headerlink" href="#feature.pixel_vec" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">feature.</code><code class="descname">pixel_vec</code><span class="sig-paren">(</span><em>img</em><span class="sig-paren">)</span><a class="headerlink" href="#feature.pixel_vec" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -97,13 +97,30 @@
 </table>
 </dd></dl>
 
+<dl class="function">
+<dt id="feature.unify_img_size">
+<code class="descclassname">feature.</code><code class="descname">unify_img_size</code><span class="sig-paren">(</span><em>img</em><span class="sig-paren">)</span><a class="headerlink" href="#feature.unify_img_size" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>img</strong> (<em>cv2.image</em>) &#8211; input image</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">image with a uniform size</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">cv2.image</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="global.html"
@@ -111,12 +128,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="train.html"
                         title="next chapter">Training</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/feature.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/feature.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -124,16 +143,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -148,13 +164,13 @@
         <li class="right" >
           <a href="global.html" title="Global Variables"
              >previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" >API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" >API Documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2016, Liang Chen.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

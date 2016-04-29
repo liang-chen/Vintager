@@ -8,7 +8,7 @@
     
     <title>Utilities &mdash; Vintager 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,13 +23,13 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" />
     <link rel="up" title="API Documentation" href="API.html" />
     <link rel="prev" title="Training" href="train.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,37 +41,85 @@
         <li class="right" >
           <a href="train.html" title="Training"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="module-utils">
 <span id="utilities"></span><h1>Utilities<a class="headerlink" href="#module-utils" title="Permalink to this headline">¶</a></h1>
 <p>Utilities</p>
 <dl class="function">
-<dt id="utils.create_symbol">
-<tt class="descclassname">utils.</tt><tt class="descname">create_symbol</tt><big>(</big><em>label</em>, <em>loc</em><big>)</big><a class="headerlink" href="#utils.create_symbol" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a symbol object with its label and location (center)</p>
+<dt id="utils.create_symbol_with_center_loc">
+<code class="descclassname">utils.</code><code class="descname">create_symbol_with_center_loc</code><span class="sig-paren">(</span><em>label</em>, <em>loc</em><span class="sig-paren">)</span><a class="headerlink" href="#utils.create_symbol_with_center_loc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a symbol object with its label and center location</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>label</strong> (<em>string</em>) &#8211; name of the symbol</li>
-<li><strong>loc</strong> (<em>LOC</em>) &#8211; center location of the symbol</li>
+<li><strong>loc</strong> (<a class="reference internal" href="symbol.html#symbol.LOC" title="symbol.LOC"><em>LOC</em></a>) &#8211; center location of the symbol</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sym</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Symbol</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="symbol.html#symbol.Symbol" title="symbol.Symbol">Symbol</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.create_symbol_with_upper_left_corner">
+<code class="descclassname">utils.</code><code class="descname">create_symbol_with_upper_left_corner</code><span class="sig-paren">(</span><em>label</em>, <em>loc</em><span class="sig-paren">)</span><a class="headerlink" href="#utils.create_symbol_with_upper_left_corner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a symbol object with its label and upper-left corner</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>label</strong> (<em>string</em>) &#8211; name of the symbol</li>
+<li><strong>loc</strong> (<a class="reference internal" href="symbol.html#symbol.LOC" title="symbol.LOC"><em>LOC</em></a>) &#8211; center location of the symbol</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sym</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="symbol.html#symbol.Symbol" title="symbol.Symbol">Symbol</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utils.get_sub_im">
+<code class="descclassname">utils.</code><code class="descname">get_sub_im</code><span class="sig-paren">(</span><em>im</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#utils.get_sub_im" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crop subimage for a certain symbol <strong>s</strong> from the whole image <strong>im</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>im</strong> (<em>cv2.image</em>) &#8211; whole image</li>
+<li><strong>s</strong> (<a class="reference internal" href="symbol.html#symbol.Symbol" title="symbol.Symbol"><em>Symbol</em></a>) &#8211; symbol</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sub_im</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">cv2.image</p>
 </td>
 </tr>
 </tbody>
@@ -84,17 +132,19 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="train.html"
                         title="previous chapter">Training</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/utilities.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/utilities.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -102,16 +152,13 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -123,13 +170,13 @@
         <li class="right" >
           <a href="train.html" title="Training"
              >previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" >API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" >API Documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2016, Liang Chen.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

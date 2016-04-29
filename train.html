@@ -8,7 +8,7 @@
     
     <title>Training &mdash; Vintager 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,14 +23,14 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" />
     <link rel="up" title="API Documentation" href="API.html" />
     <link rel="next" title="Utilities" href="utilities.html" />
     <link rel="prev" title="Feature Extraction" href="feature.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -45,53 +45,29 @@
         <li class="right" >
           <a href="feature.html" title="Feature Extraction"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" accesskey="U">API Documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="module-train">
 <span id="training"></span><h1>Training<a class="headerlink" href="#module-train" title="Permalink to this headline">¶</a></h1>
 <p>Training symbol detectors via Linear SVM</p>
 <dl class="function">
-<dt id="train.get_sub_im">
-<tt class="descclassname">train.</tt><tt class="descname">get_sub_im</tt><big>(</big><em>im</em>, <em>s</em><big>)</big><a class="headerlink" href="#train.get_sub_im" title="Permalink to this definition">¶</a></dt>
-<dd><p>Crop subimage for a certain symbol <strong>s</strong> from the whole image <strong>im</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>im</strong> (<em>cv2.image</em>) &#8211; whole image</li>
-<li><strong>s</strong> (<em>Symbol</em>) &#8211; symbol</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">sub_im</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">cv2.image</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
 <dt id="train.is_in_loc_list">
-<tt class="descclassname">train.</tt><tt class="descname">is_in_loc_list</tt><big>(</big><em>loc</em>, <em>ll</em><big>)</big><a class="headerlink" href="#train.is_in_loc_list" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">train.</code><code class="descname">is_in_loc_list</code><span class="sig-paren">(</span><em>loc</em>, <em>ll</em><span class="sig-paren">)</span><a class="headerlink" href="#train.is_in_loc_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine whether a location is in a location list</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>loc</strong> (<em>LOC</em>) &#8211; target location</li>
+<li><strong>loc</strong> (<a class="reference internal" href="symbol.html#symbol.LOC" title="symbol.LOC"><em>LOC</em></a>) &#8211; target location</li>
 <li><strong>ll</strong> (<em>[LOC]</em>) &#8211; location list</li>
 </ul>
 </td>
@@ -108,7 +84,7 @@
 
 <dl class="function">
 <dt id="train.prepare_background_data">
-<tt class="descclassname">train.</tt><tt class="descname">prepare_background_data</tt><big>(</big><em>im</em>, <em>locs</em><big>)</big><a class="headerlink" href="#train.prepare_background_data" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">train.</code><code class="descname">prepare_background_data</code><span class="sig-paren">(</span><em>im</em>, <em>locs</em><span class="sig-paren">)</span><a class="headerlink" href="#train.prepare_background_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Crop subimages to prepare background data</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -132,7 +108,7 @@
 
 <dl class="function">
 <dt id="train.prepare_data_from_annotation">
-<tt class="descclassname">train.</tt><tt class="descname">prepare_data_from_annotation</tt><big>(</big><em>im</em>, <em>annotations</em><big>)</big><a class="headerlink" href="#train.prepare_data_from_annotation" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">train.</code><code class="descname">prepare_data_from_annotation</code><span class="sig-paren">(</span><em>im</em>, <em>annotations</em><span class="sig-paren">)</span><a class="headerlink" href="#train.prepare_data_from_annotation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Crop subimages for annotated symbols</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -156,7 +132,7 @@
 
 <dl class="function">
 <dt id="train.read_annotations">
-<tt class="descclassname">train.</tt><tt class="descname">read_annotations</tt><big>(</big><em>annotation_file_path</em><big>)</big><a class="headerlink" href="#train.read_annotations" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">train.</code><code class="descname">read_annotations</code><span class="sig-paren">(</span><em>annotation_file_path</em><span class="sig-paren">)</span><a class="headerlink" href="#train.read_annotations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read annotations given the annotation file path.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -174,10 +150,10 @@
 
 <dl class="function">
 <dt id="train.training">
-<tt class="descclassname">train.</tt><tt class="descname">training</tt><big>(</big><em>img_file_path</em>, <em>annotation_file_path</em>, <em>detector_name</em><big>)</big><a class="headerlink" href="#train.training" title="Permalink to this definition">¶</a></dt>
-<dd><p>Train SVM classifier given symbol annotations and feature extractor
-SVM parameters: kernel=&#8217;linear&#8217;, C=2.67, decision_function_shape= &#8220;ovo&#8221;
-trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the feature extraction method.</p>
+<code class="descclassname">train.</code><code class="descname">training</code><span class="sig-paren">(</span><em>img_file_path</em>, <em>annotation_file_path</em>, <em>detector_name</em><span class="sig-paren">)</span><a class="headerlink" href="#train.training" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train SVM classifier given symbol annotations and feature extractor.
+SVM parameters: kernel=&#8217;linear&#8217;, C=2.67, decision_function_shape= &#8220;ovo&#8221;.
+Trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the feature extraction method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -199,7 +175,7 @@ trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the featu
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="feature.html"
@@ -207,12 +183,14 @@ trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the featu
   <h4>Next topic</h4>
   <p class="topless"><a href="utilities.html"
                         title="next chapter">Utilities</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/train.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/train.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -220,16 +198,13 @@ trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the featu
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -244,13 +219,13 @@ trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the featu
         <li class="right" >
           <a href="feature.html" title="Feature Extraction"
              >previous</a> |</li>
-        <li><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
-          <li><a href="API.html" >API Documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="API.html" >API Documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2016, Liang Chen.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>

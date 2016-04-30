@@ -131,7 +131,7 @@ def prepare_data_from_annotation(im, annotations):
     return data, labels
 
 
-def training(img_file_path, annotation_file_path, detector_name):
+def train_svm(img_file_path, annotation_file_path, detector_name):
     """
     Train SVM classifier given symbol annotations and feature extractor.
     SVM parameters: kernel='linear', C=2.67, decision_function_shape= "ovo".
@@ -167,3 +167,17 @@ def training(img_file_path, annotation_file_path, detector_name):
     # print len(pos_data), len(neg_data)
     # print clf.predict(train_data)
     joblib.dump(clf, '../models/' + detector_name + '_svm.pkl')
+
+def train_cnn(img_file_path, annotation_file_path):
+    """
+    Train CNN multi-class classifier based on symbol annotations.
+
+    :param img_file_path: path to score image
+    :type img_file_path: string
+    :param annotation_file_path: path to annotations
+    :type annotation_file_path: string
+    """
+    im = cv2.imread(img_file_path, 0)
+    annotations = read_annotations(annotation_file_path)
+    img_data, labels = prepare_data_from_annotation(im, annotations)
+

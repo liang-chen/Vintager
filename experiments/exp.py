@@ -2,14 +2,14 @@
 from pdfReader import PdfReader
 from symbolDetector import SymbolDetector, DetectorOption
 from symbolAnnotator import SymbolAnnotator
-from train import training, read_annotations
+from train import train_svm, read_annotations
 from globv import symbol_label_parms
 
 data_dir = '../data/'
 anno_dir = '../annotations/'
 
 ####training
-#training(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
+#train_svm(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
 
 ####display annotations
 # pr = PdfReader(data_dir + "train.pdf")

@@ -168,6 +168,7 @@ def train_svm(img_file_path, annotation_file_path, detector_name):
     # print clf.predict(train_data)
     joblib.dump(clf, '../models/' + detector_name + '_svm.pkl')
 
+
 def train_cnn(img_file_path, annotation_file_path):
     """
     Train CNN multi-class classifier based on symbol annotations.

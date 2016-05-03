@@ -20,6 +20,7 @@ except Exception:
 annotations = read_annotations(anno_dir + "train.ant")
 sa = SymbolAnnotator(pr.images[0], annotations)
 sa.display()
+sa.crop_and_save()
 #
 exit(0)
 

@@ -5,7 +5,9 @@ Display annotations from annotation file
 """
 
 import cv2
-from utils import create_symbol_with_center_loc
+import os
+import glob
+from utils import create_symbol_with_center_loc, get_sub_im, unify_img_size
 
 
 class SymbolAnnotator:
@@ -21,9 +23,9 @@ class SymbolAnnotator:
         :param annotations: annotations read by train.read_annotations
         :type annotations: dict containing symbol annotations
         """
-        self.__symbols__ = []
+        self._symbols = []
         self.load_annotations(annotations)
-        self.__image__ = im
+        self._image = im
 
     def load_annotations(self, annotations):
         """
@@ -35,15 +37,15 @@ class SymbolAnnotator:
         for label in annotations.keys():
             locs = annotations[label]
             sl = [create_symbol_with_center_loc(label, loc) for loc in locs]
-            self.__symbols__ += [s for s in sl if s is not None]
+            self._symbols += [s for s in sl if s is not None]
 
     def display(self):
         """
         Display annotations on the image
         """
-        img = cv2.cvtColor(self.__image__, cv2.COLOR_GRAY2RGB)
+        img = cv2.cvtColor(self._image, cv2.COLOR_GRAY2RGB)
         font = cv2.FONT_HERSHEY_SIMPLEX
-        for s in self.__symbols__:
+        for s in self._symbols:
             label = s.get_label()
             bbox = s.get_bbox()
             rows = bbox.get_rows()
@@ -56,3 +58,25 @@ class SymbolAnnotator:
         cv2.imwrite("annotations.jpg", img)
         cv2.imshow("annotations", img)
         cv2.waitKey(0)
+
+    def crop_and_save(self):
+        """
+        Crop annotated symbols and save as jpg files
+
+        :return:
+        :rtype:
+        """
+
+        data_label_pair = [(get_sub_im(self._image, symbol), symbol.get_label()) for symbol in
+                           self._symbols if symbol is not None]
+
+        for (sub_img, label) in data_label_pair:
+            if sub_img is None:
+                continue
+            dir = "../data/" + label + "/"
+            if not os.path.exists(dir):
+                os.makedirs(dir)
+
+            resized_img = unify_img_size(sub_img)
+            cnt = len([f for f in os.listdir(dir) if f.endswith('.jpg') and os.path.isfile(os.path.join(dir, f))])
+            cv2.imwrite(dir + str(cnt + 1) + ".jpg", resized_img)

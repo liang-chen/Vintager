@@ -3,9 +3,9 @@
 Utilities
 """
 
-from globv import symbol_label_parms
+from globv import symbol_label_parms, uni_size
 from symbol import Symbol
-
+import cv2
 
 def create_symbol_with_center_loc(label, loc):
     """
@@ -72,3 +72,16 @@ def get_sub_im(im, s):
     sub_im = im[y:y + brows, x:x + bcols]
 
     return sub_im
+
+
+def unify_img_size(img):
+    """
+    Rescale an image into uniform size
+
+    :param img: input image
+    :type img: cv2.image
+    :return: image with a uniform size
+    :rtype: cv2.image
+    """
+
+    return cv2.resize(img, uni_size)

@@ -9,9 +9,9 @@ Welcome to Vintager's documentation!
 Contents:
 
 .. toctree::
+   :maxdepth: 1
+   includeme
    :maxdepth: 2
-
-   ..includeme
    API
 
 Indices and tables

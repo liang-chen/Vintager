@@ -50,86 +50,93 @@
 <p><strong>Vintager</strong> (Python) is designed to combine crowdsourcing annotation and automatic object detection
 for <strong>Optical Music Recogntion</strong>.</p>
 <p>We provide utilities from score file reading/conversion to symbol annotating and detection. More specifically,
-<strong>Vintager</strong> contains API&#8217;s to perform the following functionalities:</p>
+<strong>Vintager</strong> contains API&#8217;s to perform the various functionalities as following:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="18%" />
-<col width="82%" />
+<col width="13%" />
+<col width="87%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">List Type</th>
-<th class="head">Examples (syntax in the <a class="reference external" href="cheatsheet.txt">text source</a>)</th>
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Coverage</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>I/O</td>
-<td>Read PDF and convert to cv2.image type, stored in pdfReader.images list</td>
+<td>Read PDF and convert it to cv2.image type, stored in pdfReader.images list</td>
 </tr>
 <tr class="row-odd"><td>Preprocessing</td>
 <td><ol class="first last arabic simple">
-<li>items use any variation of &#8220;1.&#8221;, &#8220;A)&#8221;, and &#8220;(i)&#8221;</li>
-<li>also auto-enumerated</li>
+<li>Staff detection</li>
+<li>Page rescaling according to detected staff and ideal spatium</li>
 </ol>
 </td>
 </tr>
-<tr class="row-even"><td>Definition list</td>
-<td><dl class="first last docutils">
-<dt>Term is flush-left</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">optional classifier</span><dd>Definition is indented, no blank line between</dd>
-</dl>
+<tr class="row-even"><td>Symbol Annotator</td>
+<td>Given annotation list, display associated bounding box on the image or crop and store symbol instances</td>
+</tr>
+<tr class="row-odd"><td>Model Training</td>
+<td><ol class="first last arabic simple">
+<li>Pixel feature + linear Support Vector Machine</li>
+<li>HOG feature + linear Support Vector Machine</li>
+<li>Convolutional Neural Newwork</li>
+</ol>
 </td>
 </tr>
-<tr class="row-odd"><td>Field list</td>
-<td><table class="first last docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
+<tr class="row-even"><td>Symbol Detection</td>
+<td>Given test image, detect target symbols</td>
+</tr>
+</tbody>
+</table>
+<p>The symbols that are currently of interest to us:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="5%" />
+<col width="6%" />
+<col width="8%" />
+<col width="18%" />
+<col width="17%" />
+<col width="12%" />
+<col width="10%" />
+</colgroup>
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">field name:</th><td class="field-body">field body</td>
+<tr class="row-odd"><td>treble clef</td>
+<td>bass clef</td>
+<td>flat</td>
+<td>sharp</td>
+<td>natural</td>
+<td>solid note head</td>
+<td>open note head</td>
+<td>whole note</td>
+<td>bar line</td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr class="row-even"><td>Option list</td>
-<td><table class="first last docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>at least 2 spaces between option &amp; description</td></tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<p>utilities to transform printed music scores in pdf format to
-gray-scale JPEG image and rescale it to a constant spatium (staff height = 30).</p>
-<p>detect various types of music symbols and display
-their associated bounding boxes. The detected symbols will also be saved into a database which will then be fed
-into web-based application for the users to verify. User-labeled symbols will, in return, be used by <strong>Vintager</strong> to
-re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
-music symbol dataset at the same time.</p>
-<p>Symbol Classes of interest: bar line, solid note head, open note head, whole note, flat, sharp, natural, treble clef,
-alto clef, bass clef.</p>
-<p>Symbol Detectors:
-1, pixel features + linear svm
-2, HOG features + linear svm
-3, Convolutional Neural Network</p>
-<p>Annotation format:
-Each symbol is associated with a bounding box of a constant size.
+<p>The above list may be extended for a full-fledged OMR system in the future.</p>
+</div>
+<div class="section" id="annotation-format">
+<h1>Annotation Format<a class="headerlink" href="#annotation-format" title="Permalink to this headline">¶</a></h1>
+<p>Each symbol is associated with a bounding box of a type-dependent size.
 Annotation file contains a list of symbols, each having one name and its center location.
 symbolAnnotator class reads annotation files, convert
 the annotation into symbol objects and display them on the image.</p>
-<p>Todo: evaluation, database</p>
+</div>
+<div class="section" id="todo">
+<h1>Todo<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h1>
+<p>1, Evaluation
+2, The detected symbols will also be saved into a database which will then be fed
+into web-based application for the users to verify. User-labeled symbols will, in return, be used by <strong>Vintager</strong> to
+re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
+music symbol dataset at the same time.</p>
 </div>
 <div class="section" id="requirements">
 <h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
 <p>Python2.7</p>
 <p>OpenCV</p>
-<p>TensorFlow</p>
 <p>Scikit-learn</p>
+<p>TensorFlow</p>
 </div>
 <div class="section" id="api-documentation">
 <h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
@@ -145,6 +152,8 @@ the annotation into symbol objects and display them on the image.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Vintager Homepage</a></li>
+<li><a class="reference internal" href="#annotation-format">Annotation Format</a></li>
+<li><a class="reference internal" href="#todo">Todo</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 <li><a class="reference internal" href="#api-documentation">API Documentation</a></li>
 </ul>

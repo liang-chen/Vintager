@@ -15,6 +15,7 @@ from globv import uni_size
 
 def unify_img_size(img):
     """
+    Rescale an image into uniform size
 
     :param img: input image
     :type img: cv2.image
@@ -27,6 +28,7 @@ def unify_img_size(img):
 
 def hog(img):
     """
+    Extract hog feature from image
 
     :param img: input image
     :type img: cv2.image
@@ -45,6 +47,7 @@ def hog(img):
 
 def pixel_vec(img):
     """
+    Extract pixel feature from image
 
     :param img: input image
     :type img: cv2.image

@@ -11,17 +11,17 @@ anno_dir = '../annotations/'
 ####training
 #train_svm(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
 
-####display annotations
-# pr = PdfReader(data_dir + "train.pdf")
-# try:
-#     pr.read()
-# except Exception:
-#     print Exception
-# annotations = read_annotations(anno_dir + "train.ant")
-# sa = SymbolAnnotator(pr.images[0], annotations)
-# sa.display()
-# #
-# exit(0)
+###display annotations
+pr = PdfReader(data_dir + "train.pdf")
+try:
+    pr.read()
+except Exception:
+    print Exception
+annotations = read_annotations(anno_dir + "train.ant")
+sa = SymbolAnnotator(pr.images[0], annotations)
+sa.display()
+#
+exit(0)
 
 ####read pdf (test data)
 pr = PdfReader(data_dir + "test.pdf")

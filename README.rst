@@ -56,4 +56,4 @@ API Documentation
 =================
 `link`_
 
-.. _link: http://liang-chen.github.io/Vintager
+.. _link: http://liang-chen.github.io/Vintager/API.html

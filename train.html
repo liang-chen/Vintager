@@ -149,8 +149,26 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="train.training">
-<code class="descclassname">train.</code><code class="descname">training</code><span class="sig-paren">(</span><em>img_file_path</em>, <em>annotation_file_path</em>, <em>detector_name</em><span class="sig-paren">)</span><a class="headerlink" href="#train.training" title="Permalink to this definition">¶</a></dt>
+<dt id="train.train_cnn">
+<code class="descclassname">train.</code><code class="descname">train_cnn</code><span class="sig-paren">(</span><em>img_file_path</em>, <em>annotation_file_path</em><span class="sig-paren">)</span><a class="headerlink" href="#train.train_cnn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train CNN multi-class classifier based on symbol annotations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>img_file_path</strong> (<em>string</em>) &#8211; path to score image</li>
+<li><strong>annotation_file_path</strong> (<em>string</em>) &#8211; path to annotations</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="train.train_svm">
+<code class="descclassname">train.</code><code class="descname">train_svm</code><span class="sig-paren">(</span><em>img_file_path</em>, <em>annotation_file_path</em>, <em>detector_name</em><span class="sig-paren">)</span><a class="headerlink" href="#train.train_svm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train SVM classifier given symbol annotations and feature extractor.
 SVM parameters: kernel=&#8217;linear&#8217;, C=2.67, decision_function_shape= &#8220;ovo&#8221;.
 Trained model will be saved as &#8221;../models/?_svm.pkl&#8221;, ? is the feature extraction method.</p>

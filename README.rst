@@ -10,17 +10,12 @@ We provide utilities from score file reading/conversion to symbol annotating and
 Type              Coverage
 ================  ============================================================
 I/O               Read PDF and convert it to cv2.image type, stored in pdfReader.images list
-Preprocessing     1. Staff detection
-                  #. Page rescaling according to detected staff and ideal spatium
-Symbol Annotator    Given annotation list, display associated bounding box on the image or crop and store symbol instances
-Symbol Detector Model Training  1. Pixel feature + linear Support Vector Machine
-                                #. HOG feature + linear Support Vector Machine
-                                #. Convolutional Neural Newwork
-Symbol Detection  Given test image, detect target symbols
+
 ================  ============================================================
 
 The symbols that are currently of interest to us:
-treble clef, bass clef, flat, sharp, natural, solid note head, open note head, whole note, bar line.
+
+|treble clef | bass clef | flat | sharp | natural | solid note head | open note head | whole note | bar line.
 
 The above list may be extended for a full-fledged OMR system in the future.
 

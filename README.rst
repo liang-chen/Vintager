@@ -22,7 +22,7 @@ Symbol Detection  Given test image, detect target symbols
 The symbols that are currently of interest to us:
 
 ============================================================================================================
-treble clef | bass clef | flat | sharp | natural | solid note head | open note head | whole note | bar line
+treble clef bass clef   flat    sharp   natural solid note head open note head  whole note  bar line
 ============================================================================================================
 
 The above list may be extended for a full-fledged OMR system in the future.

@@ -13,7 +13,9 @@ I/O               Read PDF and convert it to cv2.image type, stored in pdfReader
 Preprocessing     1. Staff detection
                   #. Page rescaling according to detected staff and ideal spatium
 Symbol Annotator    Given annotation list, display associated bounding box on the image or crop and store symbol instances
-
+Model Training    1. Pixel feature + linear Support Vector Machine
+                  #. HOG feature + linear Support Vector Machine
+                  #. Convolutional Neural Newwork
 Symbol Detection  Given test image, detect target symbols
 ================  ============================================================
 

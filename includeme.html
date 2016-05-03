@@ -24,9 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" />
-    <link rel="next" title="API Documentation" href="API.html" />
-    <link rel="prev" title="Welcome to Vintager’s documentation!" href="index.html" /> 
+    <link rel="top" title="Vintager 1.0.0 documentation" href="index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,12 +36,6 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="API.html" title="API Documentation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to Vintager’s documentation!"
-             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -56,8 +48,65 @@
   <div class="section" id="vintager-homepage">
 <h1>Vintager Homepage<a class="headerlink" href="#vintager-homepage" title="Permalink to this headline">¶</a></h1>
 <p><strong>Vintager</strong> (Python) is designed to combine crowdsourcing annotation and automatic object detection
-for <strong>Optical Music Recogntion</strong>. We provide utilities to transform printed music scores (in pdf format) to
-gray-level image with constant spatium (staff height = 30), detect various types of music symbols and display
+for <strong>Optical Music Recogntion</strong>.</p>
+<p>We provide utilities from score file reading/conversion to symbol annotating and detection. More specifically,
+<strong>Vintager</strong> contains API&#8217;s to perform the following functionalities:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">List Type</th>
+<th class="head">Examples (syntax in the <a class="reference external" href="cheatsheet.txt">text source</a>)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>I/O</td>
+<td>Read PDF and convert to cv2.image type, stored in pdfReader.images list</td>
+</tr>
+<tr class="row-odd"><td>Preprocessing</td>
+<td><ol class="first last arabic simple">
+<li>items use any variation of &#8220;1.&#8221;, &#8220;A)&#8221;, and &#8220;(i)&#8221;</li>
+<li>also auto-enumerated</li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td>Definition list</td>
+<td><dl class="first last docutils">
+<dt>Term is flush-left</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">optional classifier</span><dd>Definition is indented, no blank line between</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td>Field list</td>
+<td><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">field name:</th><td class="field-body">field body</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td>Option list</td>
+<td><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-o</span></kbd></td>
+<td>at least 2 spaces between option &amp; description</td></tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>utilities to transform printed music scores in pdf format to
+gray-scale JPEG image and rescale it to a constant spatium (staff height = 30).</p>
+<p>detect various types of music symbols and display
 their associated bounding boxes. The detected symbols will also be saved into a database which will then be fed
 into web-based application for the users to verify. User-labeled symbols will, in return, be used by <strong>Vintager</strong> to
 re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
@@ -100,12 +149,6 @@ the annotation into symbol objects and display them on the image.</p>
 <li><a class="reference internal" href="#api-documentation">API Documentation</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to Vintager&#8217;s documentation!</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="API.html"
-                        title="next chapter">API Documentation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -136,12 +179,6 @@ the annotation into symbol objects and display them on the image.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="API.html" title="API Documentation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to Vintager’s documentation!"
-             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Vintager 1.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>

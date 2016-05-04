@@ -26,7 +26,7 @@ class DetectorOption:
         :param name: name of the detector
         :type name: string
         """
-        self.__name__ = name
+        self._name = name
 
     def name(self):
         """
@@ -35,7 +35,7 @@ class DetectorOption:
         :return: name of the detector
         :rtype: string
         """
-        return self.__name__
+        return self._name
 
 
 class SymbolDetector:
@@ -52,11 +52,11 @@ class SymbolDetector:
         """
         try:
             model_dir = '../models/'
-            self.model = joblib.load(model_dir + option.name() + '.pkl')
+            self._model = joblib.load(model_dir + option.name() + '.pkl')
             if option.name() == "hog_svm":
-                self.extractor = hog
+                self._extractor = hog
             elif option.name() == "pixel_svm":
-                self.extractor = pixel_vec
+                self._extractor = pixel_vec
 
         except Exception:
             print "detector initialization"
@@ -82,9 +82,9 @@ class SymbolDetector:
                 loc = LOC(j,i)
                 sym = create_symbol_with_upper_left_corner(label, loc)
                 sub_im = get_sub_im(im, sym)
-                feature = self.extractor(sub_im)
+                feature = self._extractor(sub_im)
                 feature = feature.reshape(-1,feature.size)
-                if self.model.predict(feature) == label:
+                if self._model.predict(feature) == label:
                     detected.append((i,j))
 
         if mode == "show":
@@ -113,7 +113,7 @@ class SymbolDetector:
         tot_rows, tot_cols = im.shape[:2]
         detected = []
         step_size = 2
-        cls = self.model.classes_
+        cls = self._model.classes_
         for i in xrange(0, tot_rows, step_size):
             for j in xrange(0, tot_cols, step_size):
                 for label in symbol_label_parms.keys():
@@ -124,10 +124,10 @@ class SymbolDetector:
                     sym = create_symbol_with_upper_left_corner(label, loc)
                     sub_im = get_sub_im(im, sym)
 
-                    feature = self.extractor(sub_im)
+                    feature = self._extractor(sub_im)
                     feature = feature.reshape(-1, feature.size)
-                    if self.model.predict(feature) == label:
-                        detected.append((self.model.predict_proba(feature)[0][np.where(cls == label)], i, j, label))
+                    if self._model.predict(feature) == label:
+                        detected.append((self._model.predict_proba(feature)[0][np.where(cls == label)], i, j, label))
                     # how to get comparable score here???
                     #temp_prob = self.model.decision_function(feature)[0][np.where(cls == label)]
 

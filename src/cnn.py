@@ -63,8 +63,8 @@ def get_data_batch(i, batch_size):
 
 def get_all_data():
     n_labels = len(symbol_label_list)
-    imgs = np.array([], dtype='float32')
-    labels = np.array([], dtype='float32')
+    imgs = np.empty((0, uni_image_pixels), dtype='float32')
+    labels = np.empty((0, n_labels), dtype='float32')
 
     for i in xrange(n_labels):
         label_name = symbol_label_list[i]
@@ -79,9 +79,9 @@ def get_all_data():
         for j in xrange(file_cnt):
             label_vec = np.zeros(n_labels, dtype='float32')
             label_vec[i] = 1  ##one-hot encoding
-            np.append(labels, label_vec)
+            labels = np.append(labels, np.array([label_vec]), axis = 0)
             img = cv2.imread(dir + str(j + 1) + ".jpg", 0)
-            np.append(imgs, pixel_vec(img))
+            imgs = np.append(imgs, np.array([pixel_vec(img)]), axis=0)
 
     data = (imgs, labels)
 
@@ -91,8 +91,8 @@ def get_all_data():
 def train_cnn():
     batch_size = 50
     n_labels = len(symbol_label_list)
-    x = tf.placeholder(tf.float32, shape=(batch_size, uni_image_pixels))
-    y_ = tf.placeholder(tf.float32, shape=(batch_size, n_labels))
+    x = tf.placeholder(tf.float32, shape=(None, uni_image_pixels))
+    y_ = tf.placeholder(tf.float32, shape=(None, n_labels))
 
     sess = tf.InteractiveSession()
     x_image = tf.reshape(x, [-1, uni_size[0], uni_size[1], 1])
@@ -131,14 +131,15 @@ def train_cnn():
     b_fc3 = bias_variable([n_labels])
     y_conv = tf.nn.softmax(tf.matmul(h_fc1, W_fc3) + b_fc3)
 
-    #print "okay"
     cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y_conv), reduction_indices=[1]))
     train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
     correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
     find_y_conv = tf.argmax(y_conv,1)
     sess.run(tf.initialize_all_variables())
-    for i in range(2000):
+
+    iter = 2000
+    for i in range(iter):
         #print i
         batch = get_data_batch(i,batch_size)
 
@@ -152,6 +153,10 @@ def train_cnn():
                 x: batch[0], y_: batch[1]})
             print("step %d, training accuracy %g" % (i, train_accuracy))
         train_step.run(feed_dict={x: batch[0], y_: batch[1]})
+
+    saver = tf.train.Saver()
+    save_path = saver.save(sess, "../models/cnn_model_" + str(iter) + ".ckpt")
+    print("Model saved in file: %s" % save_path)
 
     test_data = get_all_data()
     print("test accuracy %g" % accuracy.eval(feed_dict={

@@ -32,13 +32,15 @@ def max_pool_2x2(x):
 def get_data_batch(i, batch_size):
     cnt = 0
     n_labels = len(symbol_label_list)
-    imgs = np.array([], dtype = 'float32')
+    imgs = np.empty((0, uni_image_pixels), dtype = 'float32')
     labels = np.zeros((batch_size, n_labels), dtype='float32')
+    circ = 0
 
     while cnt < batch_size:
-        cur_label_index = cnt % n_labels
-        labels[cnt, cur_label_index] = 1
-        label_name = symbol_label_list[i]
+        cur_label_index = circ % n_labels
+        circ += 1
+
+        label_name = symbol_label_list[cur_label_index]
         dir = "../data/" + label_name + "/"
         if not os.path.exists(dir):
             continue
@@ -47,13 +49,15 @@ def get_data_batch(i, batch_size):
         if file_cnt == 0:
             continue
 
+        labels[cnt, cur_label_index] = 1
         picked_index = i % file_cnt
         img = cv2.imread(dir + str(picked_index + 1) + ".jpg", 0)
-        np.append(imgs, pixel_vec(img))
+        imgs = np.append(imgs, np.array([pixel_vec(img)]), axis = 0)
         cnt += 1
 
-    batch = (imgs, labels)
 
+    batch = (imgs, labels)
+    #print np.shape(imgs)
     return batch
 
 
@@ -122,14 +126,16 @@ def train_cnn():
     b_fc2 = bias_variable([n_labels])
     y_conv = tf.nn.softmax(tf.matmul(h_fc1, W_fc2) + b_fc2)
 
+    #print "okay"
     cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y_conv), reduction_indices=[1]))
     train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
     correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
     sess.run(tf.initialize_all_variables())
-    for i in range(20000):
+    for i in range(2000):
+        #print i
         batch = get_data_batch(i,batch_size)
-        if i % 100 == 0:
+        if i % 20 == 0:
             train_accuracy = accuracy.eval(feed_dict={
                 x: batch[0], y_: batch[1]})
             print("step %d, training accuracy %g" % (i, train_accuracy))

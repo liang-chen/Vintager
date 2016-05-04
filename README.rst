@@ -4,7 +4,7 @@ Vintager Homepage
 for **Optical Music Recogntion**.
 
 We provide utilities from score file reading/conversion to symbol annotating and detection. More specifically,
-**Vintager** contains API's to perform the various functionalities as following:
+**Vintager** provides API's to perform various functionalities as follows:
 
 ================  ============================================================
 Type              Coverage

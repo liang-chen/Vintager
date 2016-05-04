@@ -3,11 +3,13 @@
 
 
 import tensorflow as tf
+from tensorflow.contrib import skflow
 import numpy as np
 import os
 import cv2
-from globv import uni_image_pixels, symbol_label_list, uni_size
+from globv import uni_image_pixels, symbol_label_list, uni_size, cnn_model_path
 from feature import pixel_vec
+from sklearn import datasets
 
 
 def weight_variable(shape):
@@ -23,8 +25,11 @@ def bias_variable(shape):
 def conv2d(x, W):
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 
-
 def max_pool_2x2(x):
+    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1],
+                        strides=[1, 2, 2, 1], padding='SAME')
+
+def max_pool_4x4(x):
     return tf.nn.max_pool(x, ksize=[1, 4, 4, 1],
                         strides=[1, 4, 4, 1], padding='SAME')
 
@@ -88,6 +93,69 @@ def get_all_data():
     return data
 
 
+def get_all_data_var():
+    n_labels = len(symbol_label_list)
+    imgs = np.empty((0, uni_image_pixels), dtype='float32')
+    labels = np.array([], dtype='float32')
+
+    for i in xrange(n_labels):
+        label_name = symbol_label_list[i]
+        dir = "../data/" + label_name + "/"
+        if not os.path.exists(dir):
+            continue
+
+        file_cnt = len([f for f in os.listdir(dir) if f.endswith('.jpg') and os.path.isfile(os.path.join(dir, f))])
+        if file_cnt == 0:
+            continue
+
+        for j in xrange(file_cnt):
+            labels = np.append(labels, i)
+            img = cv2.imread(dir + str(j + 1) + ".jpg", 0)
+            imgs = np.append(imgs, np.array([pixel_vec(img)]), axis=0)
+
+    data = (imgs, labels)
+
+    return data
+
+
+def conv_model(X,y):
+
+    X = tf.reshape(X, [-1, uni_size[0], uni_size[1], 1])
+    y = tf.reshape(y, [-1, len(symbol_label_list)])
+    #first conv layer
+    with tf.variable_scope('conv_layer1'):
+        h_conv1 = skflow.ops.conv2d(X, n_filters = 32, filter_shape = [5,5],
+                                    bias = True, activation = tf.nn.relu)
+        h_pool1 = max_pool_4x4(h_conv1)
+
+    # second conv layer will compute 64 features for each 5x5 patch
+    with tf.variable_scope('conv_layer2'):
+        h_conv2 = skflow.ops.conv2d(h_pool1, n_filters=64, filter_shape=[5, 5],
+                                    bias=True, activation=tf.nn.relu)
+        h_pool2 = max_pool_4x4(h_conv2)
+        # reshape tensor into a batch of vectors
+        h_pool2_flat = tf.reshape(h_pool2, [-1, 4 * 4 * 64])
+
+    # densely connected layer with 1024 neurons
+    h_fc1 = skflow.ops.dnn(h_pool2_flat, [1024], activation=tf.nn.relu, dropout=0.5)
+    return skflow.models.logistic_regression(h_fc1, y)
+
+
+def train_cnn_var():
+    n_labels = len(symbol_label_list)
+    iris = datasets.load_iris()
+    # Training and predicting
+    classifier = skflow.TensorFlowEstimator(
+        model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=10,
+        learning_rate=0.001)
+    data = get_all_data_var()
+    print np.shape(data[0]), np.shape(data[1])
+    #print np.shape(iris.data), np.shape(iris.target)
+    #print iris.target
+    classifier.fit(data[0], data[1])
+    classifier.save(cnn_model_path)
+
+
 def train_cnn():
     batch_size = 50
     n_labels = len(symbol_label_list)
@@ -101,19 +169,19 @@ def train_cnn():
     W_conv1 = weight_variable([5, 5, 1, 32])
     b_conv1 = bias_variable([32])
     h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
-    h_pool1 = max_pool_2x2(h_conv1)
+    h_pool1 = max_pool_4x4(h_conv1)
 
     ##second convolutional layer
     W_conv2 = weight_variable([5, 5, 32, 64])
     b_conv2 = bias_variable([64])
     h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
-    h_pool2 = max_pool_2x2(h_conv2)
+    h_pool2 = max_pool_4x4(h_conv2)
 
     ##third convolutional layer
     # W_conv3 = weight_variable([5, 5, 64, 128])
     # b_conv3 = bias_variable([128])
     # h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3) + b_conv3)
-    # h_pool3 = max_pool_2x2(h_conv3)
+    # h_pool3 = max_pool_4x4(h_conv3)
 
     ##fully connected layer
     W_fc1 = weight_variable([4 * 4 * 64, 1024])
@@ -138,7 +206,7 @@ def train_cnn():
     find_y_conv = tf.argmax(y_conv,1)
     sess.run(tf.initialize_all_variables())
 
-    iter = 2000
+    iter = 40
     for i in range(iter):
         #print i
         batch = get_data_batch(i,batch_size)
@@ -161,5 +229,10 @@ def train_cnn():
     test_data = get_all_data()
     print("test accuracy %g" % accuracy.eval(feed_dict={
         x: test_data[0], y_: test_data[1]}))
+    sess.close()
 
 
+def detect_cnn(img):
+    classifier = skflow.TensorFlowEstimator.restore(cnn_model_path)
+    pred_index = classifier.predict(np.array([pixel_vec(img)], dtype = "float32"))
+    return symbol_label_list[pred_index]

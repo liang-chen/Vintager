@@ -45,3 +45,6 @@ uni_size = (64, 64)
 
 #
 uni_image_pixels = uni_size[0]*uni_size[1]
+
+#
+cnn_model_path = "../models/cnn_model"

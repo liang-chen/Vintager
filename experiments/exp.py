@@ -5,12 +5,16 @@ from symbolAnnotator import SymbolAnnotator
 from train import train_svm, read_annotations
 from globv import symbol_label_parms
 import cv2
-from cnn import train_cnn
+from cnn import train_cnn_var, detect_cnn
 
 data_dir = '../data/'
 anno_dir = '../annotations/'
 
-train_cnn()
+train_cnn_var()
+
+im = cv2.imread("../data/bass_clef/1.jpg", 0)
+print detect_cnn(im)
+
 exit(0)
 
 ####training

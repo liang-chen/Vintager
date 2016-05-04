@@ -146,7 +146,7 @@ def train_cnn_var():
     iris = datasets.load_iris()
     # Training and predicting
     classifier = skflow.TensorFlowEstimator(
-        model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=10,
+        model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=2000,
         learning_rate=0.001)
     data = get_all_data_var()
     print np.shape(data[0]), np.shape(data[1])
@@ -235,4 +235,5 @@ def train_cnn():
 def detect_cnn(img):
     classifier = skflow.TensorFlowEstimator.restore(cnn_model_path)
     pred_index = classifier.predict(np.array([pixel_vec(img)], dtype = "float32"))
-    return symbol_label_list[pred_index]
+    print pred_index
+    return symbol_label_list[pred_index[0]]

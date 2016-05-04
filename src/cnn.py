@@ -155,7 +155,7 @@ def train_cnn():
         train_step.run(feed_dict={x: batch[0], y_: batch[1]})
 
     saver = tf.train.Saver()
-    save_path = saver.save(sess, "../models/cnn_model_" + str(iter) + ".ckpt")
+    save_path = saver.save(sess, "../models/cnn_model", global_step=iter)
     print("Model saved in file: %s" % save_path)
 
     test_data = get_all_data()

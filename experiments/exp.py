@@ -4,21 +4,22 @@ from symbolDetector import SymbolDetector, DetectorOption
 from symbolAnnotator import SymbolAnnotator
 from train import train_svm, read_annotations
 from globv import symbol_label_parms
+import cv2
+from cnn import train_cnn
 
 data_dir = '../data/'
 anno_dir = '../annotations/'
+
+train_cnn()
+exit(0)
 
 ####training
 #train_svm(data_dir + "train0.jpg", anno_dir + "train.ant", "hog")
 
 ###display annotations
-pr = PdfReader(data_dir + "train.pdf")
-try:
-    pr.read()
-except Exception:
-    print Exception
+test_img = cv2.imread(data_dir + "train0.jpg", 0)
 annotations = read_annotations(anno_dir + "train.ant")
-sa = SymbolAnnotator(pr.images[0], annotations)
+sa = SymbolAnnotator(test_img, annotations)
 sa.display()
 sa.crop_and_save()
 #

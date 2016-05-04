@@ -56,7 +56,7 @@ class PdfReader:
                 raise Exception("Didn't find end of JPG!")
             istart += startfix
             iend += endfix
-            # print "JPG %d from %d to %d" % (njpg, istart, iend)
+            print "JPG %d from %d to %d" % (njpg, istart, iend)
             jpg = pdf[istart:iend]
             jpgfile = file(self.path[:-4]+"%d.jpg" % njpg, "wb")
 

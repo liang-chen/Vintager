@@ -66,7 +66,6 @@ class SymbolAnnotator:
         :return:
         :rtype:
         """
-
         data_label_pair = [(get_sub_im(self._image, symbol), symbol.get_label()) for symbol in
                            self._symbols if symbol is not None]
 
@@ -77,6 +76,5 @@ class SymbolAnnotator:
             if not os.path.exists(dir):
                 os.makedirs(dir)
 
-            resized_img = unify_img_size(sub_img)
             cnt = len([f for f in os.listdir(dir) if f.endswith('.jpg') and os.path.isfile(os.path.join(dir, f))])
-            cv2.imwrite(dir + str(cnt + 1) + ".jpg", resized_img)
+            cv2.imwrite(dir + str(cnt + 1) + ".jpg", sub_img)

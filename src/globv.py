@@ -27,6 +27,9 @@ symbol_label_parms = {
     "background": map(lambda x: int(x*space_unit), [3,3])
 }
 
+#: keep the order of appereace in symbol dictionary
+symbol_label_list = ["bar_line", "treble_clef", "bass_clef", "alto_clef","flat", "sharp", "natural", "solid_note_head", "open_note_head", "whole_note_head", "background"]
+
 #: Use this number of rows if the symbol type if unknown.
 default_symbol_rows = int(3*space_unit)
 
@@ -40,3 +43,5 @@ uni_feature_len = int(ceil(40*space_unit*space_unit))
 #uni_size = (int(5*space_unit), int(5*space_unit))
 uni_size = (64, 64)
 
+#
+uni_image_pixels = uni_size[0]*uni_size[1]

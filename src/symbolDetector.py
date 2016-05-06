@@ -13,6 +13,7 @@ from globv import *
 from feature import hog, pixel_vec
 from utils import create_symbol_with_upper_left_corner, get_sub_im
 from symbol import LOC, Symbol
+from cnn import load_cnn_classifier, detect_cnn
 
 
 class DetectorOption:
@@ -27,15 +28,33 @@ class DetectorOption:
         :type name: string
         """
         self._name = name
+        self._name_parse = name.split('_')
 
-    def name(self):
-        """
-        Get the name of detector
+    def load_extractor(self):
+        if len(self._name_parse) != 2:
+            return None
+        if self._name_parse[0] == 'hog':
+            return hog
+        elif self._name_parse[0] == 'pixel':
+            return pixel_vec
+        else:
+            return None
 
-        :return: name of the detector
-        :rtype: string
-        """
-        return self._name
+    def load_classifier(self):
+        if len(self._name_parse) == 1: #load cnn
+            return load_cnn_classifier()
+        elif len(self._name_parse) == 2 and self._name_parse[1] == 'svm': #load svm
+            model_dir = '../models/'
+            try:
+                cls = joblib.load(model_dir + self._name + '.pkl')
+                return cls
+            except Exception:
+                print Exception
+        else:
+            return None
+
+    def model_name(self):
+        return self._name_parse[-1]
 
 
 class SymbolDetector:
@@ -50,17 +69,24 @@ class SymbolDetector:
         :param option: input detector option
         :type option: DetectorOption()
         """
-        try:
-            model_dir = '../models/'
-            self._model = joblib.load(model_dir + option.name() + '.pkl')
-            if option.name() == "hog_svm":
-                self._extractor = hog
-            elif option.name() == "pixel_svm":
-                self._extractor = pixel_vec
+        self._extractor = option.load_extractor()
+        self._model = option.load_classifier()
+        self._name = option.model_name()
 
-        except Exception:
-            print "detector initialization"
-            print Exception
+    def classify_image(self, im):
+        """
+        return label and score
+        :param im:
+        :type im:
+        :return:
+        :rtype:
+        """
+        if self._name == "svm":
+            feature = self._extractor(im)
+            feature = feature.reshape(-1, feature.size)
+            return (self._model.predict(feature), self._model.predict_proba(feature)[0], self._model.classes_)
+        elif self._name == "cnn":
+            return (detect_cnn(im, self._model), None, None)
 
     def detect(self, im, label, mode):
         """
@@ -82,9 +108,7 @@ class SymbolDetector:
                 loc = LOC(j,i)
                 sym = create_symbol_with_upper_left_corner(label, loc)
                 sub_im = get_sub_im(im, sym)
-                feature = self._extractor(sub_im)
-                feature = feature.reshape(-1,feature.size)
-                if self._model.predict(feature) == label:
+                if self.classify_image(sub_im)[0] == label:
                     detected.append((i,j))
 
         if mode == "show":
@@ -124,10 +148,13 @@ class SymbolDetector:
                     sym = create_symbol_with_upper_left_corner(label, loc)
                     sub_im = get_sub_im(im, sym)
 
-                    feature = self._extractor(sub_im)
-                    feature = feature.reshape(-1, feature.size)
-                    if self._model.predict(feature) == label:
-                        detected.append((self._model.predict_proba(feature)[0][np.where(cls == label)], i, j, label))
+                    if self.classify_image(sub_im)[0] == label:
+                        if self.classify_image(sub_im)[2] is not None:
+                            detected.append((self.classify_image(sub_im)[0][np.where(self.classify_image(sub_im)[2] == label)],
+                                         i, j, label))
+                        else:
+                            detected.append((None, i, j, label))
+
                     # how to get comparable score here???
                     #temp_prob = self.model.decision_function(feature)[0][np.where(cls == label)]
 
@@ -137,7 +164,7 @@ class SymbolDetector:
         hashed = np.zeros((tot_rows, tot_cols), dtype=bool)
         suppressed = []
         for (score, i, j, label) in detected:
-            if label == "background" or hashed[i][j] or label == "open_note_head":
+            if score is None or label == "background" or hashed[i][j]:
                 continue
             suppressed.append((i,j,label))
             print i,j,score

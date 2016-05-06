@@ -34,6 +34,6 @@ except Exception:
 option = DetectorOption("cnn")
 sd = SymbolDetector(option)
 #sd.detect_all(pr.images[0][1:300, 1:300], "show")
-sd.detect(pr.images[0][1:500,1:500], "open_note_head", "show")
+sd.detect(pr.images[0][1:500,1:500], "bass_clef", "show")
 # for label in symbol_label_parms.keys():
 # sd.detect(pr.images[0], label, "show"

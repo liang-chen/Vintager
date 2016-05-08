@@ -7,6 +7,7 @@ save each page as a cv2.image object
 
 import cv2
 
+
 class PdfReader:
     """
     PdfReader Class
@@ -19,8 +20,9 @@ class PdfReader:
         :param path: path to PDF file
         :type path: string
         """
-        self.path = path
-        self.images = []
+        self._path = path
+        self._images = []
+        self._pages = 0
 
     def read(self):
         """
@@ -32,7 +34,7 @@ class PdfReader:
         #    print "image height = ", img.height
         #    display(img)
 
-        pdf = file(self.path, "rb").read()
+        pdf = file(self._path, "rb").read()
         startmark = "\xff\xd8"
         startfix = 0
         endmark = "\xff\xd9"
@@ -58,11 +60,20 @@ class PdfReader:
             iend += endfix
             print "JPG %d from %d to %d" % (njpg, istart, iend)
             jpg = pdf[istart:iend]
-            jpgfile = file(self.path[:-4]+"%d.jpg" % njpg, "wb")
+            jpgfile = file(self._path[:-4]+"%d.jpg" % njpg, "wb")
 
             jpgfile.write(jpg)
             jpgfile.close()
-            self.images.append(cv2.imread(self.path[:-4] + "%d.jpg" % njpg, 0))
+            self._images.append(cv2.imread(self._path[:-4] + "%d.jpg" % njpg, 0))
 
             njpg += 1
+            self._pages += 1
             i = iend
+
+    def nPages(self):
+        return self._pages
+
+    def page(self, i):
+        if i >= self._pages:
+            return None
+        return self._images[i]

@@ -1,5 +1,8 @@
 
-#cnn training, model saving
+"""
+Convolutional Neural Network
+Including training and testing functions using TensorFlow
+"""
 
 
 import tensorflow as tf
@@ -13,23 +16,50 @@ from sklearn import datasets
 
 
 def weight_variable(shape):
+    """
+    Create tensorflow convolutional layer weights
+    :param shape: shape of tensor
+    :return: variable W
+    :rtype: tf.Variable
+    """
     initial = tf.truncated_normal(shape, stddev=0.1)
     return tf.Variable(initial)
 
 
 def bias_variable(shape):
+    """
+    Create tensorflow convolutional layer bias
+    :param shape: shape of tensor
+    :return: variable b
+    :rtype: tf.Variable
+    """
     initial = tf.constant(0.1, shape=shape)
     return tf.Variable(initial)
 
-
 def conv2d(x, W):
+    """
+    Performing 2d convolution
+    :param x: input tensor
+    :param W: weight
+    :return: output tensor
+    """
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 
 def max_pool_2x2(x):
+    """
+    Performing 2*2 max pooling
+    :param x: input tensor
+    :return: outpur tensor
+    """
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1],
                         strides=[1, 2, 2, 1], padding='SAME')
 
 def max_pool_4x4(x):
+    """
+    Performing 4*4 convolution
+    :param x: input tensor
+    :return: outpur tensor
+    """
     return tf.nn.max_pool(x, ksize=[1, 4, 4, 1],
                         strides=[1, 4, 4, 1], padding='SAME')
 

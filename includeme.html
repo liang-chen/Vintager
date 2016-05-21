@@ -54,7 +54,7 @@
 <p><strong>Vintager</strong> (Python) is designed to combine crowdsourcing annotation and automatic object detection
 for <strong>Optical Music Recogntion</strong>.</p>
 <p>We provide utilities from score file reading/conversion to symbol annotating and detection. More specifically,
-<strong>Vintager</strong> contains API&#8217;s to perform the various functionalities as following:</p>
+<strong>Vintager</strong> provides API&#8217;s to perform various functionalities as follows:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -83,7 +83,7 @@ for <strong>Optical Music Recogntion</strong>.</p>
 <td><ol class="first last arabic simple">
 <li>Pixel feature + linear Support Vector Machine</li>
 <li>HOG feature + linear Support Vector Machine</li>
-<li>Convolutional Neural Newwork</li>
+<li>Convolutional Neural Network</li>
 </ol>
 </td>
 </tr>
@@ -122,29 +122,34 @@ for <strong>Optical Music Recogntion</strong>.</p>
 </div>
 <div class="section" id="annotation-format">
 <h1>Annotation Format<a class="headerlink" href="#annotation-format" title="Permalink to this headline">¶</a></h1>
-<p>Each symbol is associated with a bounding box of a type-dependent size.
-Annotation file contains a list of symbols, each having one name and its center location.
+<p>Annotation file contains a list of symbols, each having one name and its center location.
+Each symbol is associated with a bounding box of a type-dependent size.
 symbolAnnotator class reads annotation files, convert
 the annotation into symbol objects and display them on the image.</p>
 </div>
 <div class="section" id="todo">
 <h1>Todo<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h1>
-<p>1, Evaluation
-2, The detected symbols will also be saved into a database which will then be fed
-into web-based application for the users to verify. User-labeled symbols will, in return, be used by <strong>Vintager</strong> to
-re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
-music symbol dataset at the same time.</p>
+<ul class="simple">
+<li>Evaluation</li>
+<li>The detected symbols need to be saved in a database which will later be fed into some web-based application for the users to verify. User-labeled symbols will, in return, be used by <strong>Vintager</strong> to re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated music symbol dataset at the same time.</li>
+</ul>
 </div>
 <div class="section" id="requirements">
 <h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
-<p>Python2.7</p>
-<p>OpenCV</p>
-<p>Scikit-learn</p>
-<p>TensorFlow</p>
+<ul class="simple">
+<li>Python 2.7</li>
+<li>OpenCV 3.1.0</li>
+<li>Scikit-learn 0.17.1</li>
+<li>TensorFlow 0.8</li>
+</ul>
 </div>
 <div class="section" id="api-documentation">
 <h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://liang-chen.github.io/Vintager/API.html">link</a></p>
+<p>Check the documentation <a class="reference external" href="http://liang-chen.github.io/Vintager/API.html">here</a>.</p>
+</div>
+<div class="section" id="license">
+<h1>LICENSE<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p>See the license <a class="reference external" href="https://github.com/liang-chen/Vintager/blob/master/LICENSE">file</a>.</p>
 </div>
 
 
@@ -160,6 +165,7 @@ music symbol dataset at the same time.</p>
 <li><a class="reference internal" href="#todo">Todo</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 <li><a class="reference internal" href="#api-documentation">API Documentation</a></li>
+<li><a class="reference internal" href="#license">LICENSE</a></li>
 </ul>
 
   <h4>Previous topic</h4>

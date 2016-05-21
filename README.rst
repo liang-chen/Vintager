@@ -37,8 +37,7 @@ the annotation into symbol objects and display them on the image.
 Todo
 ====
 * Evaluation
-* The detected symbols need to be saved in a database which will later be fed into some web-based application for the users to verify. User-labeled symbols will, in return, be used by **Vintager** to
-re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
+* The detected symbols need to be saved in a database which will later be fed into some web-based application for the users to verify. User-labeled symbols will, in return, be used by **Vintager** to re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
 music symbol dataset at the same time.
 
 Requirements

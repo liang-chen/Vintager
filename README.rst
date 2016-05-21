@@ -29,28 +29,25 @@ The above list may be extended for a full-fledged OMR system in the future.
 
 Annotation Format
 =================
-Each symbol is associated with a bounding box of a type-dependent size.
 Annotation file contains a list of symbols, each having one name and its center location.
+Each symbol is associated with a bounding box of a type-dependent size.
 symbolAnnotator class reads annotation files, convert
 the annotation into symbol objects and display them on the image.
 
 Todo
 ====
-1, Evaluation
-2, The detected symbols will also be saved into a database which will then be fed
-into web-based application for the users to verify. User-labeled symbols will, in return, be used by **Vintager** to
+* Evaluation
+* The detected symbols need to be saved in a database which will later be fed
+into some web-based application for the users to verify. User-labeled symbols will, in return, be used by **Vintager** to
 re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated
 music symbol dataset at the same time.
 
 Requirements
 ============
-Python2.7
-
-OpenCV
-
-Scikit-learn
-
-TensorFlow
+* Python 2.7
+* OpenCV 3.1.0
+* Scikit-learn 0.17.1
+* TensorFlow 0.8
 
 API Documentation
 =================

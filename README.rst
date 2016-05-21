@@ -53,3 +53,10 @@ API Documentation
 Check the documentation `here`_.
 
 .. _here: http://liang-chen.github.io/Vintager/API.html
+
+LICENSE
+=======
+See the license `file`_.
+
+.. _file: https://github.com/liang-chen/Vintager/blob/master/LICENSE
+

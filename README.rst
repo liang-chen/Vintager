@@ -51,6 +51,6 @@ Requirements
 
 API Documentation
 =================
-`link`_
+Check the documentation `here`_.
 
-.. _link: http://liang-chen.github.io/Vintager/API.html
+.. _here: http://liang-chen.github.io/Vintager/API.html

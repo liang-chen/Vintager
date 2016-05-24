@@ -14,4 +14,5 @@ API Documentation
    global
    feature
    train
+   cnn
    utilities

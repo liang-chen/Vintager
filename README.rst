@@ -52,7 +52,7 @@ Check the documentation `here`_.
 
 .. _here: http://liang-chen.github.io/Vintager/API.html
 
-DEMO
+Demo
 ====
 The demo directory contains several use cases of **Vintager**. For example, to train a SVM detector using hog features, please check `demo_hog_svm`_. Convolutional Neural Network `training`_ (based on **skflow**) and `detection`_ are also included.
 
@@ -60,7 +60,7 @@ The demo directory contains several use cases of **Vintager**. For example, to t
 .. _training: https://github.com/liang-chen/Vintager/blob/master/demo/train_cnn_demo.py
 .. _detection: https://github.com/liang-chen/Vintager/blob/master/demo/detect_symbol_cnn_demo.py
 
-LICENSE
+License
 =======
 See the license `file`_.
 

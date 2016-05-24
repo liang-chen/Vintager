@@ -173,15 +173,12 @@ def conv_model(X,y):
 
 def train_cnn_var():
     n_labels = len(symbol_label_list)
-    iris = datasets.load_iris()
     # Training and predicting
     classifier = skflow.TensorFlowEstimator(
         model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=2000,
         learning_rate=0.001)
     data = get_all_data_var()
-    print np.shape(data[0]), np.shape(data[1])
-    #print np.shape(iris.data), np.shape(iris.target)
-    #print iris.target
+    #print np.shape(data[0]), np.shape(data[1])
     classifier.fit(data[0], data[1])
     classifier.save(cnn_model_path)
 

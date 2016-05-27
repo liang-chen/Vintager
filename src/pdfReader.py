@@ -23,6 +23,7 @@ class PdfReader:
         self._path = path
         self._images = []
         self._pages = 0
+        self.read()
 
     def read(self):
         """

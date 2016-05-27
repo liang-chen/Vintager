@@ -6,8 +6,9 @@ Display annotations from annotation file
 
 import cv2
 import os
-import glob
-from utils import create_symbol_with_center_loc, get_sub_im, unify_img_size
+import random
+from symbol import LOC
+from utils import create_symbol_with_center_loc, get_sub_im
 
 
 class SymbolAnnotator:
@@ -59,16 +60,48 @@ class SymbolAnnotator:
         cv2.imshow("annotations", img)
         cv2.waitKey(0)
 
+    @staticmethod
+    def is_in_loc_list(loc, loc_list):
+        list = [[l.get_x(), l.get_y()] for l in loc_list]
+        if [loc.get_x(), loc.get_y()] in list:
+            return True
+        else:
+            return False
+
+    def prepare_background_data(self, num):
+        """
+        Collect background data which doesn't overlap with annotations
+        """
+        (rows, cols) = self._image.shape
+        i = 0
+        data = []
+        labels = []
+        locs = [s.get_center() for s in self._symbols]
+        while i < num:
+            y = random.randint(0, rows)
+            x = random.randint(0, cols)
+            l = LOC(x, y)
+
+            if not SymbolAnnotator.is_in_loc_list(l, locs):
+                s = create_symbol_with_center_loc("background", l)
+                sub_im = get_sub_im(self._image, s)
+
+                if sub_im is not None:
+                    data.append(get_sub_im(self._image, s))
+                    i += 1
+                    labels.append("background")
+
+        return data, labels
+
     def crop_and_save(self):
         """
-        Crop annotated symbols and save as jpg files
-
-        :return:
-        :rtype:
+        Crop annotated symbols and save them as jpg files
         """
         data_label_pair = [(get_sub_im(self._image, symbol), symbol.get_label()) for symbol in
                            self._symbols if symbol is not None]
 
+        bk_data, bk_label = self.prepare_background_data(100)
+        data_label_pair += [(d,l) for d,l in zip(bk_data, bk_label)]
         for (sub_img, label) in data_label_pair:
             if sub_img is None:
                 continue

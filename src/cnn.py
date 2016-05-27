@@ -12,7 +12,6 @@ import os
 import cv2
 from globv import uni_image_pixels, symbol_label_list, uni_size, cnn_model_path
 from feature import pixel_vec
-from sklearn import datasets
 
 
 def weight_variable(shape):

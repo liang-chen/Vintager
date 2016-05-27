@@ -15,4 +15,4 @@ if "__main__" == __name__:
 
     option = DetectorOption("hog_svm")
     sd = SymbolDetector(option)
-    sd.detect(pr.images[0][1:500, 1:500], "bass_clef", "show")
+    sd.detect(pr.page(0)[1:500, 1:500], "bass_clef", "show")

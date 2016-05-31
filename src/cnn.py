@@ -148,7 +148,6 @@ def get_all_data_var():
 
 
 def conv_model(X,y):
-
     X = tf.reshape(X, [-1, uni_size[0], uni_size[1], 1])
     y = tf.reshape(y, [-1, len(symbol_label_list)])
     #first conv layer
@@ -174,7 +173,7 @@ def train_cnn_var():
     n_labels = len(symbol_label_list)
     # Training and predicting
     classifier = skflow.TensorFlowEstimator(
-        model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=2000,
+        model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=10000,
         learning_rate=0.001)
     data = get_all_data_var()
     #print np.shape(data[0]), np.shape(data[1])

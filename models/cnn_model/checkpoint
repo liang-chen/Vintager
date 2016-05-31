@@ -1,2 +1,2 @@
-model_checkpoint_path: "/Users/Hipapa/Projects/Git/Vintager/models/cnn_model/model-2000"
-all_model_checkpoint_paths: "/Users/Hipapa/Projects/Git/Vintager/models/cnn_model/model-2000"
+model_checkpoint_path: "/Users/Hipapa/Projects/Git/Vintager/models/cnn_model/model-10000"
+all_model_checkpoint_paths: "/Users/Hipapa/Projects/Git/Vintager/models/cnn_model/model-10000"

@@ -1,1 +1,1 @@
-{"continue_training": false, "optimizer": "Adagrad", "verbose": 1, "class_name": "TensorFlowEstimator", "clip_gradients": 5.0, "batch_size": 50, "steps": 2000, "n_classes": 11, "learning_rate": 0.001}
+{"continue_training": false, "optimizer": "Adagrad", "verbose": 1, "class_name": "TensorFlowEstimator", "clip_gradients": 5.0, "batch_size": 50, "steps": 10000, "n_classes": 11, "learning_rate": 0.001}

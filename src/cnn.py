@@ -259,8 +259,12 @@ def train_cnn():
 
 def detect_cnn(img, classifier):
     pred_index = classifier.predict(np.array([pixel_vec(img)], dtype = "float32"))
+    proba = classifier.predict_proba(np.array([pixel_vec(img)], dtype = "float32"))
     return symbol_label_list[pred_index[0]]
 
+def detect_cnn_proba(img, classifier):
+    proba = classifier.predict_proba(np.array([pixel_vec(img)], dtype = "float32"))
+    return proba
 
 def load_cnn_classifier():
     return skflow.TensorFlowEstimator.restore(cnn_model_path)

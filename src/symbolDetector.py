@@ -12,8 +12,8 @@ from sklearn.externals import joblib
 from globv import *
 from feature import hog, pixel_vec
 from utils import create_symbol_with_upper_left_corner, get_sub_im
-from symbol import LOC, Symbol
-from cnn import load_cnn_classifier, detect_cnn
+from symbol import LOC
+from cnn import load_cnn_classifier, detect_cnn, detect_cnn_proba
 
 
 class DetectorOption:
@@ -84,9 +84,9 @@ class SymbolDetector:
         if self._name == "svm":
             feature = self._extractor(im)
             feature = feature.reshape(-1, feature.size)
-            return (self._model.predict(feature), self._model.predict_proba(feature)[0], self._model.classes_)
+            return (self._model.predict(feature), self._model.predict_proba(feature)[0])
         elif self._name == "cnn":
-            return (detect_cnn(im, self._model), None, None)
+            return (detect_cnn(im, self._model), detect_cnn_proba(im, self._model)[0])
 
     def detect(self, im, label, mode):
         """
@@ -136,8 +136,8 @@ class SymbolDetector:
         """
         tot_rows, tot_cols = im.shape[:2]
         detected = []
-        step_size = 2
-        cls = self._model.classes_
+        step_size = 1
+        cls = (self._name == "svm") and self._model.classes_ or symbol_label_list
         for i in xrange(0, tot_rows, step_size):
             for j in xrange(0, tot_cols, step_size):
                 for label in symbol_label_parms.keys():
@@ -149,11 +149,8 @@ class SymbolDetector:
                     sub_im = get_sub_im(im, sym)
 
                     if self.classify_image(sub_im)[0] == label:
-                        if self.classify_image(sub_im)[2] is not None:
-                            detected.append((self.classify_image(sub_im)[0][np.where(self.classify_image(sub_im)[2] == label)],
+                        detected.append((self.classify_image(sub_im)[1][cls.index(label)],
                                          i, j, label))
-                        else:
-                            detected.append((None, i, j, label))
 
                     # how to get comparable score here???
                     #temp_prob = self.model.decision_function(feature)[0][np.where(cls == label)]
@@ -164,19 +161,24 @@ class SymbolDetector:
         hashed = np.zeros((tot_rows, tot_cols), dtype=bool)
         suppressed = []
         for (score, i, j, label) in detected:
-            if score is None or label == "background" or hashed[i][j]:
+            if score is None or hashed[i][j]:
                 continue
             suppressed.append((i,j,label))
             print i,j,score
-            hashed[max(0, i - default_symbol_rows / 2): min(i + default_symbol_rows / 2, tot_rows - 1),
-            max(0, j - default_symbol_cols / 2): min(j + default_symbol_cols / 2, tot_cols - 1)] = True
-            #[rows, cols] = symbol_label_parms[label] #which suppression region should I use? the symbol bbox or the default bbox?
+
+            hashed[i][j] = True
+            # if label == "background":
+            #     hashed[i][j] = True
+            # else:
+            #     hashed[max(0, i - default_symbol_rows / 2): min(i + default_symbol_rows / 2, tot_rows - 1), max(0, j - default_symbol_cols / 2): min(j + default_symbol_cols / 2, tot_cols - 1)] = True
 
         if mode == "show":
             rgb_im = cv2.cvtColor(im, cv2.COLOR_GRAY2RGB)
             font = cv2.FONT_HERSHEY_SIMPLEX
 
             for (i, j, label) in suppressed:
+                if label == "background":
+                    continue
                 [rows, cols] = symbol_label_parms[label]
                 rows = int(rows)
                 cols = int(cols)

@@ -5,7 +5,7 @@ Demo: Detect symbol via convolutional neural network
 
 from symbolDetector import DetectorOption, SymbolDetector
 from pdfReader import PdfReader
-
+import cv2
 
 if "__main__" == __name__:
     data_dir = '../data/'
@@ -15,4 +15,6 @@ if "__main__" == __name__:
 
     option = DetectorOption("cnn")
     sd = SymbolDetector(option)
-    sd.detect(pr.page(0)[1:500, 1:500], "treble_clef", "show")
+    #cv2.imshow("haha", pr.page(0)[180:280, 20:300])
+    #cv2.waitKey(0)
+    sd.detect_all(pr.page(0)[180:280, 20:300], "show")

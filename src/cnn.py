@@ -173,8 +173,8 @@ def train_cnn_var():
     n_labels = len(symbol_label_list)
     # Training and predicting
     classifier = skflow.TensorFlowEstimator(
-        model_fn=conv_model, n_classes=n_labels, batch_size=50, steps=10000,
-        learning_rate=0.001)
+        model_fn=conv_model, n_classes=n_labels, batch_size=100, steps=20000,
+        learning_rate=0.01)
     data = get_all_data_var()
     #print np.shape(data[0]), np.shape(data[1])
     classifier.fit(data[0], data[1])

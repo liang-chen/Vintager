@@ -1,0 +1,9 @@
+img/train.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated01.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated02.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated03.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated04.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated05.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated06.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated07.jpg
+img/Wagner_WWV086B-1-mm0001-0218_Schott1910Kleinmichel_IMSLP_Annotated08.jpg

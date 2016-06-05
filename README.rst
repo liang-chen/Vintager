@@ -39,12 +39,12 @@ Todo
 * Evaluation
 * The detected symbols need to be saved in a database which will later be fed into some web-based application for the users to verify. User-labeled symbols will, in return, be used by **Vintager** to re-train the symbol models. This loop will incrementally improve the performance of our detectors and create annotated music symbol dataset at the same time.
 
-Requirements
+Dependencies
 ============
 * Python 2.7
 * OpenCV 3.1.0
 * Scikit-learn 0.17.1
-* TensorFlow 0.8
+* TensorFlow 0.8 (optional, if using cnn)
 
 API Documentation
 =================
@@ -65,4 +65,11 @@ License
 See the license `file`_.
 
 .. _file: https://github.com/liang-chen/Vintager/blob/master/LICENSE
+
+Contributer
+===========
+`liang-chen`_
+
+.. _liang-chen: chen348@indiana.edu
+
 

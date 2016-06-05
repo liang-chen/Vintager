@@ -15,4 +15,4 @@ if "__main__" == __name__:
 
     option = DetectorOption("cnn")
     sd = SymbolDetector(option)
-    sd.detect_all(pr.page(0)[0:500, 0:500], "show")
+    sd.detect(pr.page(0)[0:500, 0:500], "treble_clef", "show")

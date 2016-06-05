@@ -46,6 +46,23 @@ def create_symbol_with_upper_left_corner(label, loc):
     sym.set_bbox_with_upper_left_corner(loc, rows, cols)
     return sym
 
+def create_symbol_with_bounding_box(label, bbox):
+    """
+    Create a symbol object with its label and bounding box
+
+    :param label: name of the symbol
+    :type label: string
+    :param bbox: bounding box of the symbol
+    :type bbox: BBox
+    :return: sym
+    :rtype: Symbol
+    """
+    if label not in symbol_label_parms.keys():
+        return None
+
+    sym = Symbol(label, bbox)
+    return sym
+
 def get_sub_im(im, s):
     """
     Crop subimage for a certain symbol **s** from the whole image **im**

@@ -7,9 +7,9 @@ Display annotations from annotation file
 import cv2
 import os
 import random
-from symbol import LOC
-from utils import create_symbol_with_center_loc, get_sub_im
-
+from symbol import LOC, BBox
+from utils import create_symbol_with_center_loc, create_symbol_with_bounding_box, get_sub_im
+from globv import symbol_label_parms, symbol_label_list
 
 class SymbolAnnotator:
     """
@@ -83,7 +83,11 @@ class SymbolAnnotator:
             l = LOC(x, y)
 
             if not SymbolAnnotator.is_in_loc_list(l, locs):
-                s = create_symbol_with_center_loc("background", l)
+                #randomize the size of background for better training
+                [rows, cols] = symbol_label_parms[random.choice(symbol_label_list)]
+                l_upper_left = LOC(l.get_x() - cols/2, l.get_y() - rows/2)
+                bbox = BBox(l_upper_left, rows, cols);
+                s = create_symbol_with_bounding_box("background", bbox)
                 sub_im = get_sub_im(self._image, s)
 
                 if sub_im is not None:

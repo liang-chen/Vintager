@@ -12,7 +12,7 @@ staff_height = 30.0
 #: Space unit used to measure the size of bounding box.
 space_unit = staff_height/4.0
 
-#: Dictionary that takes symbol types and their corresponding bounding box sizes.
+#: Dictionary that takes symbol types and their corresponding bounding box sizes [rows, cols].
 symbol_label_parms = {
     "bar_line": map(lambda x: int(x*space_unit), [1,5]),
     "treble_clef": map(lambda x: int(x*space_unit), [10,4]),

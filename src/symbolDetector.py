@@ -177,7 +177,7 @@ class SymbolDetector:
             font = cv2.FONT_HERSHEY_SIMPLEX
 
             for (i, j, label) in suppressed:
-                if label != "treble_clef":#hijacked
+                if label == "background":
                     continue
                 [rows, cols] = symbol_label_parms[label]
                 rows = int(rows)

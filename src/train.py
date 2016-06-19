@@ -6,7 +6,6 @@ Training symbol detectors via Linear SVM
 import cv2
 import numpy as np
 import random
-#from globv import *
 from symbol import LOC
 from sklearn.svm import SVC
 from sklearn.externals import joblib

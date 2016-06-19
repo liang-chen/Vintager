@@ -148,7 +148,6 @@ def train_svm(img_file_path, annotation_file_path, detector_name):
     annotations = read_annotations(annotation_file_path)
     img_data, labels = prepare_data_from_annotation(im, annotations)
 
-    features = []
     if detector_name == "hog":
         features = [hog(im) for im in img_data]
     elif detector_name == "pixel":
@@ -164,6 +163,4 @@ def train_svm(img_file_path, annotation_file_path, detector_name):
     print train_data.shape
     print labels.shape
     clf.fit(train_data, labels)
-    # print len(pos_data), len(neg_data)
-    # print clf.predict(train_data)
     joblib.dump(clf, '../models/' + detector_name + '_svm.pkl')

@@ -15,4 +15,4 @@ if "__main__" == __name__:
 
     option = DetectorOption("hog_svm")
     sd = SymbolDetector(option)
-    sd.detect(pr.page(0)[1:500, 1:500], "treble_clef", "show")
+    sd.detect_all(pr.page(0)[100:500, 1:500], "show")

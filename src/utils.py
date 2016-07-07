@@ -89,6 +89,38 @@ def get_sub_im(im, s):
 
     return sub_im
 
+def get_bounded_sub_im(im, s):
+    """
+    Crop subimage for a certain symbol **s** from the whole image **im**
+
+    :param im: whole image
+    :type im: cv2.image
+    :param s: symbol
+    :type s: Symbol
+    :return: sub_im
+    :rtype: cv2.image
+    """
+
+    half = 50
+    bbox = s.get_bbox()
+    center = s.get_center()
+    (rows, cols) = im.shape
+    #y = bbox.get_loc().get_y()
+    #x = bbox.get_loc().get_x()
+    y = center.get_y() - half
+    x = center.get_x() - half
+    brows = bbox.get_rows()/2
+    bcols = bbox.get_cols()/2
+    if y < 0 or y >= rows or y + 2*half < 0 or y + 2*half >= rows:
+        return None
+    if x < 0 or x >= cols or x + 2*half < 0 or x + 2*half >= cols:
+        return None
+    sub_im = im[y:y + 2*half, x:x + 2*half]
+
+    rgb_im = cv2.cvtColor(sub_im, cv2.COLOR_GRAY2RGB)
+    cv2.rectangle(rgb_im, (half - bcols, half - brows), (half + bcols, half + brows), (0, 0, 255), 2)
+    return rgb_im
+
 
 def unify_img_size(img):
     """

@@ -6,7 +6,7 @@ Including training and testing functions using TensorFlow
 
 
 import tensorflow as tf
-from tensorflow.contrib import skflow
+#import skflow
 import numpy as np
 import os
 import cv2

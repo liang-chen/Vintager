@@ -7,11 +7,12 @@ Detect music symbols via different detectors
 """
 
 import cv2
+import json
 import numpy as np
 from sklearn.externals import joblib
 from globv import *
 from feature import hog, pixel_vec
-from utils import create_symbol_with_upper_left_corner, get_sub_im
+from utils import create_symbol_with_upper_left_corner, get_sub_im, get_bounded_sub_im
 from symbol import LOC
 from cnn import load_cnn_classifier, detect_cnn, detect_cnn_proba
 
@@ -137,8 +138,15 @@ class SymbolDetector:
         tot_rows, tot_cols = im.shape[:2]
         detected = []
         step_size = 1
-        cls = (self._name == "svm") and self._model.classes_ or symbol_label_list
-        for i in xrange(0, tot_rows, step_size):
+
+        if self._name == "svm":
+            cls = self._model.classes_
+        else:
+            cls = symbol_label_list
+
+        stream = []
+
+        for i in xrange(20, tot_rows, step_size):
             for j in xrange(0, tot_cols, step_size):
                 for label in symbol_label_parms.keys():
                     [rows, cols] = symbol_label_parms[label]
@@ -146,14 +154,57 @@ class SymbolDetector:
                         continue
                     loc = LOC(j, i)
                     sym = create_symbol_with_upper_left_corner(label, loc)
-                    sub_im = get_sub_im(im, sym)
 
-                    if self.classify_image(sub_im)[0] == label:
-                        detected.append((self.classify_image(sub_im)[1][cls.index(label)],
-                                         i, j, label))
+
+                    #sub_im = get_sub_im(im, sym)
+                    #if self.classify_image(sub_im)[0] == label:
+                    #    detected.append((self.classify_image(sub_im)[1][cls.index(label)],
+                    #                     i, j, label))
 
                     # how to get comparable score here???
-                    #temp_prob = self.model.decision_function(feature)[0][np.where(cls == label)]
+                    sub_im = get_sub_im(im, sym)
+                    feature = self._extractor(sub_im)
+                    feature = feature.reshape(-1, feature.size)
+                    temp_prob = self._model.predict_proba(feature)[0]
+
+                    if label == 'background' and temp_prob[0] >= 0.9:
+                        #print cls
+                        #print len(cls), len(temp_prob)
+                        break
+
+                    if cls[np.argmax(temp_prob)] != "background":
+                        #print cls[np.argmax(temp_prob)]
+                        rgb_sub_im = get_bounded_sub_im(im, sym)
+                        if rgb_sub_im is None:
+                             continue
+                        img_file_name = 'test_' + str(i) + '_' + str(j) + '.jpg'
+                        cv2.imwrite('results/' + img_file_name, rgb_sub_im)
+                        temp_dict = {}
+                        temp_dict["name"] = img_file_name
+                        temp_dict["src"] = "test.pdf"
+                        temp_dict["page"] = 1
+                        temp_dict["scale"] = 1.0
+                        temp_dict["algorithm"] = "hog_svm"
+                        temp_dict["x"] = j
+                        temp_dict["dx"] = cols
+                        temp_dict["y"] = i
+                        temp_dict["dy"] = rows
+
+                        label_dict = [{"name": cls[i], "probability": temp_prob[i]} for i in xrange(len(cls))]
+                        temp_dict["label"] = label_dict
+                        stream.append(temp_dict)
+
+                        print len(stream)
+                        if len(stream) > 150:
+                            print "here"
+                            with open('results/database.json', 'w') as file:
+                                json.dump(stream, file)
+                            return
+
+        print len(stream)
+        with open('results/database.json', 'w') as file:
+            json.dump(stream, file)
+        return
 
         #suppressed = [(i,j,label) for (prob,i,j,label) in detected if label is not "background"]
         ##Non-Maxima Suppression
